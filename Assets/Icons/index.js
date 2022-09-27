@@ -1,5 +1,5 @@
 const icons = {
-    PopUp:require('./PopUp.png'),
-    RoundArrow:require('./roundArrow.png'),
+    settingIcon:require('./settingIcon.png'),
+
 }
 export default icons;

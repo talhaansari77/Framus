@@ -3,11 +3,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 // import AuthStack from "./AuthStack";
 import MainStack from "./MainStack";
-import SettingStack from "./SettingStack/SettingStack";
-import ChannelStack from "./ChannelStack";
+// import SettingStack from "./SettingStack/SettingStack";
+// import ChannelStack from "./ChannelStack";
 import { StatusBar } from "expo-status-bar";
 
-import RemainderStack from "./RemainderStack";
+// import RemainderStack from "./RemainderStack";
 
 const RootNavigator = () => {
   const MyTheme = {
@@ -27,8 +27,8 @@ const RootNavigator = () => {
         {/* <Stack.Screen name="AuthStack" component={AuthStack} /> */}
 
         <Stack.Screen name="MainStack" component={MainStack} />
-        <Stack.Screen name="SettingStack" component={SettingStack} /> 
-        <Stack.Screen name="RemainderStack" component={RemainderStack} /> 
+        {/* <Stack.Screen name="SettingStack" component={SettingStack} />  */}
+        {/* <Stack.Screen name="RemainderStack" component={RemainderStack} />  */}
         {/* <Stack.Screen name="SettingStack" component={SettingStack} />
         <Stack.Screen name="RemainderStack" component={RemainderStack} /> */}
 

@@ -11,9 +11,9 @@ LogBox.ignoreAllLogs();
 
 export default function App() {
   const [loaded] = useFonts({
-    lovers: require("./Assets/Fonts/LoversQuarrel-Regular.ttf"),
-    inter: require("./Assets/Fonts/Inter-VariableFont_slnt.ttf"),
-    mediun:require("./Assets/Fonts/Inter_Medium.otf"),
+    regular: require("./Assets/Fonts/Poppins-Regular.ttf"),
+    bold: require("./Assets/Fonts/Poppins-Bold.ttf"),
+   
   });
 
   if (!loaded) return <View />;
