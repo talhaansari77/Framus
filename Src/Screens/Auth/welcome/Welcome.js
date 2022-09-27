@@ -1,75 +1,132 @@
 import { View, Text, Image, ImageBackground, SafeAreaView } from "react-native";
-import React,{useState,useEffect} from "react";
-import CustomText from "../../../components/CustomText";
-import CustomButton from "../../../components/CustomButton";
-import welcomeImages from "../../../../assets/welocme_images";
-import commonStyles from "../../../utils/CommonStyles";
-import { Spacer } from "../../../components/Spacer";
-import { verticalScale, moderateScale } from "react-native-size-matters";
-import { colors } from "../../../utils/Colors";
-import CustomGradientButton from "../../../components/CustomGradientButton";
+import React, { useState, useEffect } from "react";
+import CustomText from "../../../Components/CustomText";
+import gallery from "../../../../Assets/Gallery";
+import styled from "react-native-styled-components";
+import { moderateScale, verticalScale } from "react-native-size-matters";
+import { colors } from "../../../Utils/Colors";
+import { Spacer } from "../../../Components/Spacer";
+import CustomButton from "../../../Components/CustomButton";
+import icons from "../../../../Assets/Icons";
 
-const Welcome = ({navigation}) => {
-
+const Welcome = ({ navigation }) => {
   return (
-    <View style={commonStyles.commonMain}>
-      <ImageBackground
-        ImageBackground
-        source={welcomeImages.welcomeImageGirl}
-        style={[
-          commonStyles.img,
-          {
-            alignItems: "center",
-          },
-        ]}
-      >
-        <View style={{ alignItems: "center", height: "100%", width: "100%" }}>
-          <Spacer height={verticalScale(100)} />
+    <Container>
+      <Center>
+        <CustomText
+          label={"FRĀMUS"}
+          marginTop={30}
+          fontFamily={"bold"}
+          fontSize={45}
+          color={colors.darkBlack}
+        />
 
-          <CustomText
-            label="SoleMate"
-            fontFamily="regular"
-            color={colors.white}
-            marginTop={20}
-            // fontWeight="700"
-            fontSize={verticalScale(35)}
-          />
-          <CustomText
-            label="Refer. Understand.& Connect."
-            fontFamily="regular"
-            color={colors.white}
-            marginTop={verticalScale(15)}
-            fontSize={verticalScale(12)}
-          />
-          <View style={{ height: "45%" }}></View>
-          <CustomGradientButton
-            title="Login"
-            fontFamily="bold"
-            width="90%"
-            marginTop={verticalScale(10)}
-            backgroundColor={colors.primary}
-            height={verticalScale(45)}
-            borderRadius={moderateScale(10)}
-            onPress={() => {navigation.navigate("Login")}}
-          />
-          <CustomText
-            label="Sign up"
-            fontFamily="bold"
-            color={colors.white}
-            backgroundColor={colors.primary}
+        <BottomShadow>
+          <Spacer height={18} />
+          <View>
+            <Image source={gallery.splashImage} />
+          </View>
+        </BottomShadow>
 
-            onPress={()=>{
-              navigation.navigate("Signup")
+        <Spacer height={40} />
+        <CustomText
+          label={"AI Generated Art"}
+          color={colors.darkBlack}
+          fontSize={"25"}
+          fontFamily={"bold"}
+        />
+        <CustomText
+          label={"Living in Your Home"}
+          marginTop={-8}
+          color={colors.darkBlack}
+          fontSize={"25"}
+          fontFamily={"regular"}
+        />
 
-            }}
-            marginTop={verticalScale(12)}
-            fontSize={verticalScale(12)}
+        <Spacer height={30} />
+
+        <View
+          style={{
+            shadowOffset: { width: 2, height: 3 },
+            shadowColor: "#100C3E",
+            shadowOpacity: 0.3,
+            shadowRadius: 4,
+            width: "100%",
+            // elevation: 1
+          }}
+        >
+          <CustomButton
+            title="Sign In"
+            borderRadius={15}
+            backgroundColor={colors.white}
+            color={colors.black}
+            google
           />
         </View>
-      </ImageBackground>
-    </View>
-   
+
+        <Spacer height={10} />
+
+        <View
+          style={{
+            shadowOffset: { width: 2, height: 3 },
+            shadowColor: "#100C3E",
+            shadowOpacity: 0.3,
+            shadowRadius: 4,
+            width: "100%",
+            // elevation: 1
+          }}
+        >
+          <CustomButton
+            title="Sign Up"
+            borderRadius={15}
+            backgroundColor={colors.black}
+            color={colors.white}
+          />
+        </View>
+
+        <Spacer height={30} />
+
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <View>
+            <CustomText
+              label="By continuing you agree to our"
+              fontFamily={"light"}
+              fontWeight={"700"} 
+              fontSize={11}
+              marginBottom={4}
+            />
+          </View>
+
+          <View style={{display:"flex", flexDirection:"row"}}>
+            <CustomText label="Terms " fontFamily={"semiBold"} fontSize={11} />
+            <CustomText label="& " fontFamily={"light"} fontSize={11}  />
+            <CustomText label="Privacy Policy" fontFamily={"semiBold"} fontSize={11}  />
+            
+          </View>
+        </View>
+      </Center>
+    </Container>
   );
 };
+
+const Container = styled(View, {
+  display: "flex",
+  width: "100%",
+  padding: 20,
+  flex: 1,
+  // backgroundColor: "red"
+});
+
+const Center = styled(View, {
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+const BottomShadow = styled(View, {
+  shadowOffset: { width: 6, height: 20 },
+  shadowColor: "#100C3E",
+  shadowOpacity: 0.4,
+  shadowRadius: 10,
+});
 
 export default Welcome;

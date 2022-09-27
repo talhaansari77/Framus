@@ -3,4 +3,4 @@ const profile = {
     profilePhotoUpload:require('./profilePhotoUpload.png'),
 
 }
-export default icons;
+export default profile;

@@ -7,6 +7,7 @@ const gallery = {
     galleryMainImage03:require('./galleryMainImage03.png'),
     uploadImage:require('./uploadImage.png'),
     splashImage:require('./splashImage.png'),
+    framus:require('./framus.png'),
 
 }
-export default icons;
+export default gallery;

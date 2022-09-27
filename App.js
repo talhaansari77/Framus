@@ -13,7 +13,9 @@ export default function App() {
   const [loaded] = useFonts({
     regular: require("./Assets/Fonts/Poppins-Regular.ttf"),
     bold: require("./Assets/Fonts/Poppins-Bold.ttf"),
-   
+    light: require("./Assets/Fonts/Poppins-Light.ttf"),
+    semiBold: require("./Assets/Fonts/Poppins-SemiBold.ttf"),
+
   });
 
   if (!loaded) return <View />;

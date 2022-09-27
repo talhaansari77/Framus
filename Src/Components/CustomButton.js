@@ -13,7 +13,7 @@ import {
   scale,
   moderateScale,
 } from "react-native-size-matters";
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 
 // import { ActivityIndicator } from "react-native-paper";
 import { colors } from "../Utils/Colors";
@@ -39,6 +39,7 @@ function CustomButton({
   fontSize,
   alignSelf,
   paddingHorizontal,
+  ...props
 }) {
   return (
     <TouchableOpacity
@@ -65,6 +66,18 @@ function CustomButton({
       ]}
       onPress={onPress}
     >
+      {props.icon ? (
+        <Image
+          style={{
+            width: moderateScale(20),
+            height: verticalScale(15),
+            // tintColor: colors.gray,
+          }}
+          resizeMode="contain"
+          source={props.icon}
+        />
+      ) : null}
+
       {loading ? (
         <ActivityIndicator color={colors.white} size={moderateScale(26)} />
       ) : (

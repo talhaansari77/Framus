@@ -6,6 +6,8 @@ import MainStack from "./MainStack";
 // import SettingStack from "./SettingStack/SettingStack";
 // import ChannelStack from "./ChannelStack";
 import { StatusBar } from "expo-status-bar";
+import AuthStack from "./AuthStack/AuthStack";
+
 
 // import RemainderStack from "./RemainderStack";
 
@@ -24,7 +26,7 @@ const RootNavigator = () => {
         screenOptions={{ headerShown: false }}
         // initialRouteName="SettingStack"
       >
-        {/* <Stack.Screen name="AuthStack" component={AuthStack} /> */}
+        <Stack.Screen name="AuthStack" component={AuthStack} />
 
         <Stack.Screen name="MainStack" component={MainStack} />
         {/* <Stack.Screen name="SettingStack" component={SettingStack} />  */}
