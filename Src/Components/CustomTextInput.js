@@ -240,8 +240,8 @@ const CustomTextInput = ({
               marginLeft: props.inputLeftMargin || 10,
               paddingRight: props.paddingRight || 10,
               paddingHorizontal: props.paddingHorizontal,
-              fontFamily: "bold",
-              color:colors.white,
+              fontFamily: props.fontFamily || "bold",
+              color: props.color || colors.white,
               fontSize: verticalScale(13),
             },
           ]}

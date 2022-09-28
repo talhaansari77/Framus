@@ -9,6 +9,8 @@ import Home from "../../Screens/Main/Home";
 import CustomText from "../../Components/CustomText";
 import { Platform, View } from "react-native";
 import styled from "react-native-styled-components";
+import WelcomeCollection from "../../Screens/Main/MyCollection/WelcomeCollection";
+import MyCollection from "../../Screens/Main/MyCollection/MyCollection";
 
 
 
@@ -74,11 +76,13 @@ const MainStack = () => {
         // activeBackgroundColor: "#fff",
         showIcon: true,
       }}
-      initialRouteName="Home"
+      initialRouteName="MyCollection"
       // initialRouteName={"AddReminder"}
     >
 
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="WelcomeCollection" component={WelcomeCollection} />
+      <Stack.Screen name="MyCollection" component={MyCollection} />
 
 
 

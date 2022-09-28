@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   ActivityIndicator,
+  Image,
 } from "react-native";
 // import { Ionicons } from "@expo/vector-icons";
 import {
@@ -17,6 +18,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 // import { ActivityIndicator } from "react-native-paper";
 import { colors } from "../Utils/Colors";
+import icons from "../../Assets/Icons";
 function CustomButton({
   loading,
   title,
@@ -39,6 +41,7 @@ function CustomButton({
   fontSize,
   alignSelf,
   paddingHorizontal,
+  paddingVertical,
   ...props
 }) {
   return (
@@ -50,7 +53,7 @@ function CustomButton({
           backgroundColor: backgroundColor || colors.primary,
           // backgroundGradient: <LinearGradient colors={["#8E59E2", "#f3f3f3"]} />,
           width: width || "100%",
-          height: height || verticalScale(40),
+          height: height,
           borderColor: borderColor,
           borderRadius: borderRadius || 8,
           borderWidth: borderWidth,
@@ -61,27 +64,35 @@ function CustomButton({
           marginTop,
           marginBottom: marginBottom,
           marginHorizontal: marginHorizontal,
-          paddingHorizontal: paddingHorizontal,
+          paddingVertical: paddingVertical || verticalScale(12),
+          
         },
       ]}
       onPress={onPress}
     >
-      {props.icon ? (
+      <View style={{flexDirection:"row", paddingHorizontal:20}}>
+        
+      {props.google ? (
+        <View style={{flex:3.5}}>
         <Image
           style={{
-            width: moderateScale(20),
-            height: verticalScale(15),
+            width: moderateScale(22),
+            height: verticalScale(19),
+            // flexDirection:'row',
+            // alignSelf:"center"
             // tintColor: colors.gray,
           }}
-          resizeMode="contain"
-          source={props.icon}
+          // resizeMode="contain"
+          source={icons.google}
         />
+        </View>
       ) : null}
+      
 
       {loading ? (
         <ActivityIndicator color={colors.white} size={moderateScale(26)} />
       ) : (
-        <View style={{ flexDirection: "row" }}>
+        <View style={{flex:6.5, alignItems:"center"}}>
           <Text
             style={[
               {
@@ -96,6 +107,7 @@ function CustomButton({
           </Text>
         </View>
       )}
+      </View>
     </TouchableOpacity>
   );
 }

@@ -1,246 +1,139 @@
-import { View, Text } from "react-native";
-import React, { useState } from "react";
-import commonStyles from "../../../utils/CommonStyles";
-import SignupWithCon from "./SignupWithCon";
-import CustomTextInput from "../../../components/CustomTextInput";
-import { Spacer } from "../../../components/Spacer";
-import { verticalScale, moderateScale } from "react-native-size-matters";
-import CustomText from "../../../components/CustomText";
-import ConditionPassCon from "./molecules/ConditionPassCon";
-import CustomButton from "../../../components/CustomButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import React, { Profiler, useState } from "react";
+import styled from "react-native-styled-components";
+import CustomText from "../../../Components/CustomText";
+import { Spacer } from "../../../Components/Spacer";
+import profile from "../../../../Assets/Profile";
+import CustomTextInput from "../../../Components/CustomTextInput";
+import { colors } from "react-native-elements";
+import CustomButton from "../../../Components/CustomButton";
+import { EditValidate } from "./UseEditProfile";
 
-import { colors } from "../../../utils/Colors";
-import {
-  validateEmail,
-  checkCharPassword,
-  checkNum,
-  checkSymbol,
-} from "../../../utils/Email_Password_Validation";
-import { ValidateInput } from "./UseSignup";
+const Signup = ({navigation}) => {
+  const [userName, setUserName] = useState("");
 
-import { styles } from "./styles";
-import { color } from "react-native-elements/dist/helpers";
-import { SignupEmailPassword } from "../../../services/FirebaseAuth";
-
-const Signup = ({ navigation }) => {
-  const [eyeClick, setEyeClick] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [confirmPass, setConfirmPass] = useState("")
   const [submitError, setSubmitError] = useState({
-    emailError: "",
-    passwordError: "",
-    confPasswordError:""
+    userNameError: "",
+    nameListError: "",
   });
-  // password.search(/[!/><"#$%&()¥|?>|=']/)==-1
-  console.log("conPas",password)
-  const passData = [
-    {
-      id: 1,
-      txt1: "+ 8 characters ",
-      txt2: "+ 1 symbols",
-      color: !password
-        ? colors.gray
-        : !checkCharPassword(password)
-        ? colors.red
-        : colors.gray,
-      color2: !password
-        ? colors.gray
-        : password.search(/[!/>@<"#$%&()¥|?>|='+*:~^;]/) == -1
-        ? colors.red
-        : colors.gray,
-    },
-    {
-      id: 2,
-      txt1: "+ 1 number",
-      txt2: "* get our password",
-      color2: colors.gray,
-      color: !password
-        ? colors.gray
-        : !checkNum(password)
-        ? colors.red
-        : colors.gray,
-      onGetPassword: () => {
-        getPassword();
-      },
-    },
-  ];
 
-  const getPassword = () => {
-    var chars =
-      "abcd@234@#$#$%^&*()=-{}/|-efghi234@#$jklm1234@#$%^&*()=-{}/|-567890,nopq234@#$rstu1234@#$%^&*()=-{}/|-567890,vwxyzABCDEFGHI@#$%^&*()=-{}/|-234567890,JKLMNOPQ@#$%^&*()=-{}/|-RSTUV@#$%^&*()=-{}/|-WXYZ1234567890,.!@#$%^&*()=-{}/|-";
-    var passwordLength = 15;
-    var password = "";
+  const onHandleSubmit = () => {
+    const data = {
+      userName: userName,
+    };
 
-    for (var i = 0; i <= passwordLength; i++) {
-      var randomNumber = Math.floor(Math.random() * chars.length);
-      password += chars.substring(randomNumber, randomNumber + 1);
-    }
-    if (password) setPassword(password);
-  };
+    const nameList = [
+      {id: 1, name:"ali"},
+      {id: 2, name:"zaid"},
+      {id: 3, name:"talha"}
+    ];
 
-  const onHandleSubmit = async () => {
-    const response = ValidateInput(
-      email,
-      password,
-      confirmPass,
-      submitError,
-      setSubmitError
-    );
+    // {
+    //   userName == nameList.name
+    //     ? console.log("Name Not Available")
+    //     : console.log("Name Available");
+    // }
 
+
+    console.log("Namlist Simple", nameList);
+
+
+    const response = EditValidate(data, submitError, setSubmitError, nameList);
     if (response) {
-      console.log("ok")
-      setLoading(true);
-
-      try {
-        const res = await SignupEmailPassword(email, password);
-        if (res.user.uid) {
-         AsyncStorage.setItem("userAuth", res.user.uid);
-
-          setLoading(false);
-
-          navigation.reset({
-            index: 0,
-            routes: [{ name: "MainStack" }],
-          });
-        }
-      } catch (error) {
-        console.log("onSubmitRegister error", error);
-        setSubmitError({
-          ...submitError,
-          emailError: "The email address is already in use by another account",
-        });
-        setLoading(false);
-      }
+      console.log("ok");
     }
   };
-  return (
-    <View
-      style={[
-        commonStyles.commonMain,
-        {
-          padding: 25,
-        },
-      ]}
-    >
-      <Spacer height={verticalScale(20)} />
-      <CustomText
-        label="Sign up"
-        fontFamily="bold"
-        // color={colors.facebookBlue}
-        fontSize={verticalScale(15)}
-      />
-      <Spacer height={verticalScale(15)} />
-      <SignupWithCon />
-      <Spacer height={verticalScale(20)} />
-      <CustomTextInput
-        value={email}
-        withLabel="Email adress"
-        placeholder={"example@gmail.com"}
-        error={submitError.emailError}
-        onChangeText={(em) => {
-          setEmail(em);
-          setSubmitError({ ...submitError, emailError: "" });
-        }}
-      />
-      <Spacer height={verticalScale(15)} />
-      <CustomTextInput
-        withLabel="Password"
-        value={password}
-        error={submitError.passwordError}
-        onChangeText={(pass) => {
-          setPassword(pass);
-          setSubmitError({ ...submitError, passwordError: "" });
-        }}
-        password
-        secureTextEntry={eyeClick}
-        eyeClick={eyeClick}
-        setEyeClick={setEyeClick}
-        placeholder={"password"}
-      />
-          <Spacer height={verticalScale(15)} />
-      <CustomTextInput
-        withLabel="Confirm Password"
-        value={confirmPass}
-        error={submitError.confPasswordError}
-        onChangeText={(conpass) => {
-          setConfirmPass(conpass);
-          setSubmitError({ ...submitError, confPasswordError: "" });
-        }}
-        password
-        secureTextEntry={eyeClick}
-        eyeClick={eyeClick}
-        setEyeClick={setEyeClick}
-        placeholder={"Confirm password"}
-      />
-      <Spacer height={verticalScale(20)} />
-      <View
-        style={{
-          alignItems: "center",
-          width: "100%",
-          justifyContent: "center",
-        }}
-      >
-        {passData?.map((item) => {
-          return (
-            <ConditionPassCon
-              txt1={item.txt1}
-              color={item.color}
-              color2={item.color2}
-              onGetPassword={item.onGetPassword}
-              txt2={item.txt2}
-            />
-          );
-        })}
-      </View>
-      <View
-        style={{
-          alignItems: "center",
-          padding: 10,
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        <CustomButton
-          title="Continue"
-          fontFamily="bold"
-          // width="90%"
-          opacity={0.4}
-          loading={loading}
-          color={colors.white}
-          backgroundColor={colors.primary}
-          height={verticalScale(45)}
-          borderRadius={moderateScale(15)}
-          onPress={() => {
-            // navigation.navigate("MainStack")
-            onHandleSubmit();
 
-            // onHandleSumbit();
-          }}
-        />
-        <View style={styles.bottomConatiner}>
-          <CustomText
-            label="Already have an account?"
-            fontFamily="regular"
-            fontSize={verticalScale(12)}
-          />
-          <CustomText
-            label="Login"
-            fontFamily="bold"
-            color={colors.black}
-            marginLeft={verticalScale(5)}
-            fontSize={verticalScale(12)}
-            onPress={
-              () => navigation.navigate("Login")
-              // onHandleSubmit()
-            }
+  return (
+    <Container>
+      <Spacer height={"60"} />
+      <CustomText
+        label="Profile"
+        fontFamily={"bold"}
+        fontSize={20}
+        alignSelf={"center"}
+      />
+
+      <TouchableOpacity activeOpacity={0.7}>
+        <View>
+          <Image
+            source={profile.profilePhotoUpload}
+            justifyContent={"center"}
+            alignSelf={"center"}
           />
         </View>
-      </View>
-    </View>
+      </TouchableOpacity>
+
+      <Spacer height={20} />
+      <CustomTextInput
+        placeholder="username"
+        height={60}
+        placeholderTextColor={colors.lightGray}
+        borderRadius={10}
+        fontFamily={"regular"}
+        backgroundColor={colors.white}
+        color={colors.black}
+        value={userName}
+        onChangeText={(nam) => {
+          setUserName(nam),
+            setSubmitError({ ...submitError, userNameError: "" });
+
+            // let data = nameList.filter((user) => user.name.includes(txt)?user:'');
+            // data.lenght > 0 ? (setSubmitError({ ...submitError, userNameError: "" })) : ("")
+          // setFilerList(data);
+          // console.log(data);
+        }}
+        error={submitError.userNameError}
+        // onChangeText={(txt) => {
+        //   let data =SearchLists.filter((item) => item.name.includes(txt)?item:'');
+        //   setFilerList(data);
+        //   console.log(data);
+        // }}
+      />
+      <CustomTextInput
+        placeholder="First Name"
+        height={60}
+        placeholderTextColor={colors.lightGray}
+        borderRadius={10}
+        fontFamily={"regular"}
+        backgroundColor={colors.white}
+        color={colors.black}
+        marginTop={20}
+      />
+      <CustomTextInput
+        placeholder="Last Name"
+        height={60}
+        placeholderTextColor={colors.lightGray}
+        borderRadius={10}
+        fontFamily={"regular"}
+        backgroundColor={colors.white}
+        color={colors.black}
+        marginTop={20}
+      />
+      <Spacer height={80} />
+      <CustomButton
+        title="create Profile"
+        borderRadius={15}
+        fontFamily={"bold"}
+        color={colors.white}
+        backgroundColor={colors.black}
+        onPress={() => {
+          onHandleSubmit();
+          navigation.navigate("MainStack",{screen:"WelcomeCollection"})
+        }}
+
+      />
+    </Container>
   );
 };
+
+const Container = styled(View, {
+  display: "flex",
+  width: "100%",
+  padding: 20,
+  flex: 1,
+  backgroundColor: "#f3f3f3",
+  // backgroundColor: "red",
+});
 
 export default Signup;

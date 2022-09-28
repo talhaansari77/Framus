@@ -3,8 +3,9 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 // import Welcome from "../../Screens/Auth/welcome";
 import Welcome from "../../Screens/Auth/welcome/Welcome";
+import Signup from "../../Screens/Auth/signup/Signup";
 // import Login from "../../screens/auth/login";
-// import Signup from "../../screens/auth/signup";
+
 
 
 
@@ -18,8 +19,8 @@ const AuthStack = () => {
     >
       <Stack.Screen name="Welcome" component={Welcome} />
 
-     {/* <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Login" component={Login} />  */}
+     <Stack.Screen name="Signup" component={Signup} />
+      {/* <Stack.Screen name="Login" component={Login} />  */}
 
     </Stack.Navigator>
   );

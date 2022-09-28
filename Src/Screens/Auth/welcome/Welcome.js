@@ -52,15 +52,24 @@ const Welcome = ({ navigation }) => {
             shadowOpacity: 0.3,
             shadowRadius: 4,
             width: "100%",
+            alignItems:"center",
+            alignSelf:"center",
+            justifyContent:"center"
             // elevation: 1
           }}
         >
           <CustomButton
             title="Sign In"
+            SelfAlign={"center"}
+            alignItems="center"
+            alignSelf={"center"}
             borderRadius={15}
             backgroundColor={colors.white}
             color={colors.black}
+            // verticalPadding={80}
+            // paddingVertical={20}
             google
+            onPress={() => navigation.navigate("Signup")}
           />
         </View>
 
@@ -81,6 +90,8 @@ const Welcome = ({ navigation }) => {
             borderRadius={15}
             backgroundColor={colors.black}
             color={colors.white}
+            google
+            onPress={() => navigation.navigate("Signup")}
           />
         </View>
 
