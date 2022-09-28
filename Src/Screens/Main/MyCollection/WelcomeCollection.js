@@ -8,7 +8,7 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { Spacer } from "../../../Components/Spacer";
 import CustomButton from "../../../Components/CustomButton";
 
-const WelcomeCollection = () => {
+const WelcomeCollection = ({navigation}) => {
   return (
     <Container>
       <SafeAreaView>
@@ -81,6 +81,7 @@ const WelcomeCollection = () => {
             title="Add Your Artwork"
             borderRadius={15}
             backgroundColor={colors.black}
+            onPress={() => navigation.navigate("MyCollection")}
           />
         </View>
       </Container1>

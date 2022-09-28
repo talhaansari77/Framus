@@ -92,7 +92,7 @@ function CustomButton({
       {loading ? (
         <ActivityIndicator color={colors.white} size={moderateScale(26)} />
       ) : (
-        <View style={{flex:6.5, alignItems:"center"}}>
+        <View style={{flex:6.5, alignItems:props.google?"flex-start":"center"}}>
           <Text
             style={[
               {
