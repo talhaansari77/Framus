@@ -1,7 +1,6 @@
 import "react-native-gesture-handler";
 import { LogBox, View } from "react-native";
 import RootNavigator from "./Src/Routes";
-
 import { Provider } from "redux";
 import { store } from "./Src/Redux/Store";
 import { useFonts } from "expo-font";
