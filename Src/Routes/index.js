@@ -26,13 +26,10 @@ const RootNavigator = () => {
         screenOptions={{ headerShown: false }}
         initialRouteName="MainStack"
       >
-<<<<<<< HEAD
+
         <Stack.Screen name="AuthStack" component={AuthStack} />
         <Stack.Screen name="MainStack" component={MainStack} />
-=======
-        <Stack.Screen name="MainStack" component={MainStack} />
-        {/* <Stack.Screen name="AuthStack" component={AuthStack} /> */}
->>>>>>> de5751b8e0b785eb4175ba9901688429a433efb2
+
 
       </Stack.Navigator>
       <StatusBar style="light" />
