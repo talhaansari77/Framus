@@ -64,17 +64,23 @@ const MyCollection = () => {
 
   const [page, setPage] = useState(0);
 
-  const ref = useRef(null);
+  const pager= useRef(null);
 
   const moveForward = () => {
-    if (page + 1 <= 2) {
-      ref?.current?.goToSlide(page + 1);
-      setPage(page + 1);
-    } else {
-      //   navigation.navigate("Registration");
-    }
-  };
+    // setPage(page+1)
+    // console.log("pagerRef",pager?.current,page)
+    // console.log("pagerPage",page)
 
+    // pager?.current?.setPage(page + 1);
+
+    // if (page + 1) {
+    //   pager?.current?.setPage(page + 1);
+
+    //   setPage(page + 1);
+    // } else {
+    //   //   navigation.navigate("Registration");
+    // }
+  };
   return (
     <Container>
       <SafeAreaView>
@@ -133,7 +139,9 @@ const MyCollection = () => {
           // style={{ width: "100%", padding: 0 }}
           // ref={(c) => { this._carousel = c; }}
           data={dataImage}
-          ref={ref}
+          caro
+          ref={pager}
+          // layout={'tinder'}
           onScrollIndexChanged={(index) => setPage(index)}
           renderItem={() => (
             <View
