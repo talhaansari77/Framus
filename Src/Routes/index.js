@@ -16,7 +16,7 @@ const RootNavigator = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: "#ffff",
+      background: "#E7E8EB",
     },
   };
   const Stack = createStackNavigator();
@@ -27,7 +27,7 @@ const RootNavigator = () => {
         initialRouteName="MainStack"
       >
         <Stack.Screen name="MainStack" component={MainStack} />
-        <Stack.Screen name="AuthStack" component={AuthStack} />
+        {/* <Stack.Screen name="AuthStack" component={AuthStack} /> */}
 
       </Stack.Navigator>
       <StatusBar style="light" />
