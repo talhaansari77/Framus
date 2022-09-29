@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "../../Screens/Main/Home";
+
 import { Platform, View } from "react-native";
 import styled from "react-native-styled-components";
 import WelcomeCollection from "../../Screens/Main/MyCollection/WelcomeCollection";
@@ -17,7 +17,7 @@ const MainStack = () => {
         headerShown: false,
         tabBarShowLabel: false,
       })}
-      initialRouteName="SelectScreen"
+      initialRouteName="MyCollection"
     >
 
      

@@ -116,7 +116,7 @@ const MyCollection = () => {
         />
       </View>
 
-      <Spacer height={25} />
+      <Spacer height={10} />
       <MyCollections>
         <ArrowButton>
           <Entypo name="chevron-small-left" size={27} />
