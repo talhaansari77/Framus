@@ -9,23 +9,29 @@ import { colors } from "react-native-elements";
 import CustomButton from "../../../Components/CustomButton";
 import { EditValidate } from "./UseEditProfile";
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const [submitError, setSubmitError] = useState({
     userNameError: "",
+    firstNameError: "",
+    lastNameError: "",
     nameListError: "",
   });
 
   const onHandleSubmit = () => {
     const data = {
       userName: userName,
+      firstName: firstName,
+      lastName: lastName,
     };
 
     const nameList = [
-      {id: 1, name:"ali"},
-      {id: 2, name:"zaid"},
-      {id: 3, name:"talha"}
+      { id: 1, name: "ali" },
+      { id: 2, name: "zaid" },
+      { id: 3, name: "talha" },
     ];
 
     // {
@@ -34,14 +40,14 @@ const Signup = ({navigation}) => {
     //     : console.log("Name Available");
     // }
 
-
     console.log("Namlist Simple", nameList);
-
 
     const response = EditValidate(data, submitError, setSubmitError, nameList);
     if (response) {
       console.log("ok");
     }
+
+    // {!data ? (navigation.navigate("MainStack",{screen:"WelcomeCollection"})) : ("")}
   };
 
   return (
@@ -57,7 +63,7 @@ const Signup = ({navigation}) => {
       <TouchableOpacity activeOpacity={0.7}>
         <View>
           <Image
-            source={profile.profilePhotoUpload}
+            source={profile.profilePhoto}
             justifyContent={"center"}
             alignSelf={"center"}
           />
@@ -78,8 +84,8 @@ const Signup = ({navigation}) => {
           setUserName(nam),
             setSubmitError({ ...submitError, userNameError: "" });
 
-            // let data = nameList.filter((user) => user.name.includes(txt)?user:'');
-            // data.lenght > 0 ? (setSubmitError({ ...submitError, userNameError: "" })) : ("")
+          // let data = nameList.filter((user) => user.name.includes(txt)?user:'');
+          // data.lenght > 0 ? (setSubmitError({ ...submitError, userNameError: "" })) : ("")
           // setFilerList(data);
           // console.log(data);
         }}
@@ -99,6 +105,12 @@ const Signup = ({navigation}) => {
         backgroundColor={colors.white}
         color={colors.black}
         marginTop={20}
+        value={firstName}
+        onChangeText={(firstnam) => {
+          setFirstName(firstnam),
+            setSubmitError({ ...submitError, firstNameError: "" });
+        }}
+        error={submitError.firstNameError}
       />
       <CustomTextInput
         placeholder="Last Name"
@@ -109,6 +121,12 @@ const Signup = ({navigation}) => {
         backgroundColor={colors.white}
         color={colors.black}
         marginTop={20}
+        value={lastName}
+        onChangeText={(lastnam) => {
+          setLastName(lastnam),
+            setSubmitError({ ...submitError, lastNameError: "" });
+        }}
+        error={submitError.lastNameError}
       />
       <Spacer height={80} />
       <CustomButton
@@ -119,9 +137,8 @@ const Signup = ({navigation}) => {
         backgroundColor={colors.black}
         onPress={() => {
           onHandleSubmit();
-          navigation.navigate("MainStack",{screen:"WelcomeCollection"})
+          navigation.navigate("MainStack", { screen: "WelcomeCollection" });
         }}
-
       />
     </Container>
   );
