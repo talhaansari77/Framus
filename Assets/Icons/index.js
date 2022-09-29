@@ -6,6 +6,8 @@ const icons = {
     heart:require('./heart.png'),
     upload:require('./upload.png'),
     cross:require('./cross.png'),
+    profile:require('./profile.png'),
+
 
 }
 export default icons;

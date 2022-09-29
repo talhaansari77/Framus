@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Platform } from "react-native";
 import React, { useState } from "react";
-import { ScaledSheet } from "react-native-size-matters";
+import { ScaledSheet, verticalScale } from "react-native-size-matters";
 import gallery from "../../../../../Assets/Gallery";
 import commonStyles from "../../../../Utils/CommonStyles";
 import { colors } from "../../../../Utils/Colors";
@@ -30,26 +30,35 @@ const ImageContainer = () => {
           <TextInput
             placeholder="Enter your prompt..."
             placeholderTextColor={colors.gray}
-            style={{ height: "100%" }}
+            multiline={true}
+            numberOfLines={3}
+            style={{ height: "100%",marginTop:verticalScale(5) }}
           />
         </View>
         <View style={styles.line}></View>
       </View>
-
+      <View style={{paddingLeft:10,paddingVertical:verticalScale(5)}}>
       <CustomTextInput
         placeholder="Made with... (optional)"
         height={50}
+        inputWidth={"88%"}
         placeholderTextColor={colors.black}
         borderRadius={-1}
         fontFamily={"regular"}
+    
         // backgroundColor={colors.red}
         color={colors.black}
         downArrow
       />
+
+      </View>
+
+     
       <View style={styles.line}></View>
       <View
         style={styles.secondInput}
       >
+        
         <CustomText
           label={"Post Publicly for the World to See"}
           fontSize={10}
@@ -94,7 +103,7 @@ const OpenImageLib = async (setImageCase) => {
 
 const styles = ScaledSheet.create({
   mainContainer: {
-    height: "70%",
+    height: Platform.OS=="ios"? "70%":"72%",
 
     backgroundColor: colors.white,
     marginVertical: 10,
@@ -123,7 +132,9 @@ const styles = ScaledSheet.create({
   inputContainer: {
     width: "100%",
     height: 70,
-    padding: 10,
+    paddingLeft:20
+    // padding: 10,
+
   },
   secondInput: {
     flexDirection: "row",
@@ -131,8 +142,13 @@ const styles = ScaledSheet.create({
     height: 60,
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 15,
+    // paddingHorizontal: 20,
+    paddingLeft:20,
+    paddingRight:15,
+    paddingBottom:10,
+    paddingTop:Platform.OS=="ios"? 20:0
 
     //   padding:10
-  }
+  },
+
 });

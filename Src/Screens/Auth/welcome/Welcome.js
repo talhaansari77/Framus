@@ -45,7 +45,7 @@ const Welcome = ({ navigation }) => {
 
         <Spacer height={Platform.OS=="ios"?30:20} />
 
-        <View
+        {/* <View
           style={{
             shadowOffset: { width: 2, height: 3 },
             shadowColor: "#100C3E",
@@ -57,13 +57,14 @@ const Welcome = ({ navigation }) => {
             justifyContent: "center"
             // elevation: 1
           }}
-        >
+        > */}
           <CustomButton
             title="Sign In"
             SelfAlign={"center"}
             alignItems="center"
             alignSelf={"center"}
             borderRadius={15}
+            shadowColor={"#adb5bd"}
             backgroundColor={colors.white}
             color={colors.black}
             // verticalPadding={80}
@@ -71,11 +72,11 @@ const Welcome = ({ navigation }) => {
             google
             onPress={() => navigation.navigate("Signup")}
           />
-        </View>
+        {/* </View> */}
 
         <Spacer height={10} />
 
-        <View
+        {/* <View
           style={{
             shadowOffset: { width: 2, height: 3 },
             shadowColor: "#100C3E",
@@ -84,25 +85,27 @@ const Welcome = ({ navigation }) => {
             width: "100%",
             // elevation: 1
           }}
-        >
+        > */}
           <CustomButton
             title="Sign Up"
             borderRadius={15}
+            shadowColor={"#adb5bd"}
+
             backgroundColor={colors.black}
             color={colors.white}
             google
             onPress={() => navigation.navigate("Signup")}
           />
-        </View>
+        {/* </View> */}
 
         <Spacer height={30} />
 
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <View style={{ justifyContent: "center", alignItems: "center",marginBottom:40 }}>
           <View>
             <CustomText
               label="By continuing you agree to our"
               fontFamily={"light"}
-              fontWeight={"700"}
+              fontWeight={Platform.OS=="ios"? "700":"500"}
               fontSize={11}
               marginBottom={4}
             />
@@ -139,6 +142,7 @@ const BottomShadow = styled(View, {
   shadowOpacity: 0.4,
   shadowRadius: 10,
   elevation:10
+  
 });
 
 export default Welcome;

@@ -11,11 +11,17 @@ import { verticalScale } from 'react-native-size-matters'
 const UploadImages = ({navigation}) => {
   return (
     <View style={{flex:1,}}>
-        <TopNav/>
+        <TopNav
+        onPress={()=>{
+          navigation.navigate("MyCollection")
+
+
+        }}
+        />
 
         <ImageContainer/>
         <TermAndCondition/>
-        <View style={{alignItems:"center",marginHorizontal:10,marginTop:20}}>
+        <View style={{alignItems:"center",marginHorizontal:15,marginTop:20}}>
         <CustomButton
           height={verticalScale(45)}
         

@@ -15,7 +15,7 @@ const WelcomeCollection = ({navigation}) => {
       <Spacer height={20}/>
         <MyCollection>
           <View
-            style={{ alignSelf: "center", paddingHorizontal: 8, marginTop: 7 }}
+            style={{ alignSelf: "center", paddingHorizontal: 8,  }}
           >
             {/* <FontAwesome5
               name="bell"
@@ -60,6 +60,7 @@ const WelcomeCollection = ({navigation}) => {
           color={colors.darkBlack}
         />
         <Spacer height={15} />
+        <View style={{paddingHorizontal:10}}>
         <CustomText
           label="Add your own AI-generated artwork to get started"
           fontFamily={"regular"}
@@ -68,6 +69,9 @@ const WelcomeCollection = ({navigation}) => {
           fontSize={12}
           color={colors.darkBlack}
         />
+
+        </View>
+     
         <Spacer height={60} />
         <View style={{
             shadowOffset: { width: 4, height: 5 },
@@ -93,7 +97,7 @@ const WelcomeCollection = ({navigation}) => {
 const Container = styled(View, {
   display: "flex",
   width: "100%",
-  padding: 25,
+  padding: 20,
   flex: 1,
   backgroundColor: "#f3f3f3",
   // backgroundColor: "red",
@@ -112,5 +116,6 @@ const MyCollection = styled(View, {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
+  alignItems:"center"
 });
 export default WelcomeCollection;

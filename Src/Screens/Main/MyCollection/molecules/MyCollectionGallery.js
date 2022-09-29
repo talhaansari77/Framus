@@ -34,6 +34,10 @@ const MyCollectionGallery = () => {
           //   <View>
           <TouchableOpacity
             activeOpacity={0.7}
+            onPress={()=>{
+              navigation.navigate("SelectScreen")
+
+            }}
             style={{
               width: Dimensions.get("window").width / 3.9,
               height: Platform.OS=="ios"?110:100,
@@ -121,12 +125,12 @@ const MyCollectionGallery = () => {
           style={{
             width: "100%",
             padding: 30,
-            height: "40%",
+            height: "37%",
             bottom: 0,
             backgroundColor: colors.white,
             position: "absolute",
-            borderTopRightRadius: 20,
-            borderTopLeftRadius: 20,
+            borderTopRightRadius: 30,
+            borderTopLeftRadius: 30,
           }}
         >
           <Spacer height={verticalScale(20)} />
@@ -152,7 +156,7 @@ const MyCollectionGallery = () => {
           />
           <Spacer height={verticalScale(20)} />
 
-          <View
+          {/* <View
             style={{
               shadowOffset: { width: 5, height: 3 },
               shadowColor: "#100C3E",
@@ -164,7 +168,7 @@ const MyCollectionGallery = () => {
               justifyContent: "center",
               // elevation: 1
             }}
-          >
+          > */}
             <CustomButton
               //   onPress={() =>
               //     onSavePersonality()
@@ -172,16 +176,27 @@ const MyCollectionGallery = () => {
 
               title="Yes, Delete Image"
               fontSize={16}
-              borderRadius={20}
+              borderRadius={17}
               height={55}
               backgroundColor={colors.black}
 
               // paddingHorizontal={50}
             />
-          </View>
-          <Spacer height={verticalScale(6)} />
+          {/* </View> */}
+          {/* <Spacer height={verticalScale(6)} /> */}
+          <CustomText
+                      onPress={() => setModalVisible(!modalVisible)}
 
-          <CustomButton
+            label="No, Go Back"
+            fontFamily={"bold"}
+            fontSize={"12"}
+            marginTop={verticalScale(5)}
+            alignSelf="center"
+            align="center"
+            textAlign="center"
+          />
+
+          {/* <CustomButton
             onPress={() => setModalVisible(!modalVisible)}
             title="No, Go Back"
             color={colors.black}
@@ -189,7 +204,7 @@ const MyCollectionGallery = () => {
             borderColor={colors.black}
             fontSize={15}
             borderWidth={0}
-          />
+          /> */}
           {/* </View>
             </View> */}
         </View>

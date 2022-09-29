@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Animated,
+  Platform,
 } from "react-native";
 import React, { useState, useRef } from "react";
 import styled from "react-native-styled-components";
@@ -58,7 +59,7 @@ const MyCollection = () => {
       {/* <SafeAreaView> */}
       <MyCollections>
         <View
-          style={{ alignSelf: "center", paddingHorizontal: 8, marginTop: 7 }}
+          style={{ alignSelf: "center", paddingHorizontal: 5, marginTop: 7 }}
         >
           {/* <FontAwesome5
             name="bell"
@@ -93,7 +94,7 @@ const MyCollection = () => {
             color={colors.black}
           />
         </View>
-        <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" }}>
+        <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" ,marginRight:10}}>
           <View>
             <Image
               source={icons.settingIcon}
@@ -138,8 +139,8 @@ const MyCollection = () => {
                 // backgroundColor: item,
                 height: 230,
                 // width:"100%", 
-                width: 292,
-                marginHorizontal: 10,
+                width:  Platform.OS=="ios"? moderateScale(320): 330,
+                marginHorizontal: 5,
                 borderRadius: 12,
               }}
             >
@@ -165,6 +166,7 @@ const MyCollection = () => {
       <Spacer height={10} />
       <MyCollections>
         <TouchableOpacity
+        style={{paddingLeft:10}}
           activeOpacity={0.6}
           onPress={(() => scrollTo("left"))}
         >
@@ -179,7 +181,10 @@ const MyCollection = () => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={0.6}
+        <TouchableOpacity
+                style={{paddingRight:10}}
+
+         activeOpacity={0.6}
           onPress={(() => scrollTo("right"))}
         >
           <ArrowButton>
@@ -187,8 +192,7 @@ const MyCollection = () => {
           </ArrowButton>
         </TouchableOpacity>
       </MyCollections>
-
-      <Spacer height={20} />
+      <Spacer height={10} />
       <MyCollectionGallery />
     </Container>
   );
@@ -197,7 +201,7 @@ const MyCollection = () => {
 const Container = styled(View, {
   display: "flex",
   width: "100%",
-  padding: 25,
+  padding: 20,
   flex: 1,
   backgroundColor: "#f3f3f3",
   // backgroundColor: "red",
@@ -241,6 +245,8 @@ const MyCollections = styled(View, {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
+  // paddingHorizontal:10,
+  paddingTop: Platform.OS=="ios"? verticalScale(10):10
 });
 
 export default MyCollection;

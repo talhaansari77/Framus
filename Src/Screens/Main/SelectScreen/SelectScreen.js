@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Image, ScrollView, Dimensions, TouchableOpacity, Platform } from 'react-native'
 import React from 'react'
 import styled from 'react-native-styled-components'
 import Feather from 'react-native-vector-icons/Feather'
@@ -9,18 +9,26 @@ import CustomText from '../../../Components/CustomText'
 import { Spacer } from '../../../Components/Spacer'
 // import TopNav from './molecules/TopNav'
 
-const SelectScreen = () => {
+const SelectScreen = ({navigation}) => {
     const num = [gallery.collection01, gallery.collection02, gallery.collection03, gallery.collection03, gallery.collection02, gallery.collection01, gallery.collection02, gallery.collection03, gallery.collection02, gallery.collection01, gallery.collection01, gallery.collection02, gallery.collection03, gallery.collection02, gallery.collection03, gallery.collection01, gallery.collection02, gallery.collection01]
     const TopNav = () => (
 
         <Row>
-            <Spacer width={5} />
-            <View >
+            {/* <Spacer width={5} /> */}
+            <TouchableOpacity 
+            activeOpacity={0.6}
+            style={{paddingLeft:10}}
+            onPress={()=>{
+                navigation.goBack()
+
+            }}
+            >
                 <Feather name='chevron-left' size={verticalScale(25)} />
-            </View>
-            <View style={ht}>
+            </TouchableOpacity>
+            <View  style={{width:"50%"}}>
                 <CustomText label={"Select Image"} fontSize={18} fontFamily={"bold"} />
             </View>
+            <View></View>
         </Row>
     )
 
@@ -34,8 +42,9 @@ const SelectScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <ImageContainer>
                     {num.map((item, index) => (
-                        <TouchableOpacity activeOpacity={0.7} style={{ width: Dimensions.get('window').width / 3.04, height: 138, marginBottom: 1 }}>
-                            <Image source={item} style={{ width: "100%", height: '100%' }} resizeMode="contain" />
+                        <TouchableOpacity activeOpacity={0.7} style={{ width: Platform.OS=="ios"?  Dimensions.get('window').width /   3:Dimensions.get('window').width /   3.04, height: 138, marginBottom: 1,}}>
+                            <Image source={item} 
+                            style={{ width: "100%", height: '100%' }}  />
                         </TouchableOpacity>
                     ))}
                 </ImageContainer>
@@ -58,10 +67,13 @@ const PH25 = styled(View, {
     paddingHorizontal: scale(25),
 });
 const Row = styled(View, {
-    display: "flex",
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "space-between",
+    
+    
+    // backgroundColor: "black"
+
+
 });
 const ImageContainer = styled(View, {
     display: "flex",
@@ -69,11 +81,11 @@ const ImageContainer = styled(View, {
     flexWrap: "wrap",
     justifyContent: "space-between",
     height: "100%",
-    backgroundColor: "black"
+     backgroundColor: "black"
 });
 const Flex = styled(View, (props) => ({
     flex: props.size
 }));
 const ht = {
-    flex: 9, alignItems: 'center'
+  lignItems: 'center'
 }

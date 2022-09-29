@@ -53,8 +53,8 @@ const TermAndCondition = () => {
         ></CustomText>
         <View
           style={{
-            marginTop: verticalScale(14),
-            marginLeft: Platform.OS == "ios" ? verticalScale(-112) : verticalScale(-100)
+            marginTop: verticalScale(13),
+            marginLeft: Platform.OS == "ios" ? verticalScale(-60) : verticalScale(-100)
           }}
         >
           <CustomText
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     // padding: 10,
-    paddingHorizontal: 10
+    paddingHorizontal: 20
   },
   checkBox: {
     width: 22,

@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, Platform } from "react-native";
+import { View, Text, Image, TouchableOpacity, Platform,ScrollView } from "react-native";
 import React, { Profiler, useState } from "react";
 import styled from "react-native-styled-components";
 import CustomText from "../../../Components/CustomText";
@@ -8,11 +8,18 @@ import CustomTextInput from "../../../Components/CustomTextInput";
 import { colors } from "react-native-elements";
 import CustomButton from "../../../Components/CustomButton";
 import { EditValidate } from "./UseEditProfile";
+import { ScaledSheet, verticalScale} from "react-native-size-matters";
+import icons from "../../../../Assets/Icons";
+import * as ImagePicker from 'expo-image-picker'
+import commonStyles from "../../../Utils/CommonStyles";
+
 
 const Signup = ({ navigation }) => {
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [image, setImage] = useState('');
+
 
   const [submitError, setSubmitError] = useState({
     userNameError: "",
@@ -48,7 +55,26 @@ const Signup = ({ navigation }) => {
     }
   };
 
+  const OpenImageLib = async (setImageCase) => {
+    let permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+  
+    if (permissionResult.granted === false) {
+      alert("Permission to access camera roll is required!");
+      return;
+    }
+  
+    let pickerResult = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      // allowsEditing: true,
+    });
+    console.log(pickerResult);
+    setImageCase(pickerResult.uri);
+  };
+
   return (
+    <ScrollView style={{flex:1}}>
+
     <Container>
       <Spacer height={Platform.OS=="ios"?60:30} />
       <CustomText
@@ -57,16 +83,42 @@ const Signup = ({ navigation }) => {
         fontSize={20}
         alignSelf={"center"}
       />
+       <View
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <TouchableOpacity activeOpacity={0.7}
+                  onPress={() => OpenImageLib(setImage)}
 
-      <TouchableOpacity activeOpacity={0.7}>
-        <View>
+         style={styles.imgContainer}>
+          <View style={styles.imgInner}>
+            {/* <Entypo name="user" size={200} color="black" /> */}
+            {/* <Image
+              source={icons.profile}
+              resizeMode="cover"
+              style={{ width: "100%", height: "100%" }}
+            /> */}
+
+<Image source={image ? { uri: image ? image : '' } :icons.profile}                 resizeMode="cover"
+ style={commonStyles.img} />
+
+          
+          </View>
+          <View style={styles.txtContainer}>
+              <CustomText label="Upload" color={colors.white} fontSize={15}  fontFamily={"semiBold"} />
+            </View>
+          {/* <View>
           <Image
-            source={profile.profilePhotoUpload}
+            source={profile.profilePhoto}
             justifyContent={"center"}
             alignSelf={"center"}
           />
-        </View>
-      </TouchableOpacity>
+        </View> */}
+        </TouchableOpacity>
+      </View>
 
       <Spacer height={20} />
 
@@ -132,9 +184,9 @@ const Signup = ({ navigation }) => {
         }}
         error={submitError.lastNameError}
       />
-      <Spacer height={Platform.OS=="ios"?80:50} />
+      <Spacer height={80} />
       <CustomButton
-        title="create Profile"
+        title="Create Profile"
         borderRadius={15}
         fontFamily={"bold"}
         color={colors.white}
@@ -147,6 +199,9 @@ const Signup = ({ navigation }) => {
         }}
       />
     </Container>
+
+    </ScrollView>
+
   );
 };
 
@@ -157,6 +212,42 @@ const Container = styled(View, {
   flex: 1,
   backgroundColor: "#f3f3f3",
   // backgroundColor: "red",
+});
+
+const styles = ScaledSheet.create({
+  imgContainer: {
+    width: "150@vs",
+    height: "150@vs",
+    borderRadius: 100,
+    backgroundColor: "#f8f9fa",
+    elevation: 5,
+    padding: "10@s",
+
+    marginVertical: verticalScale(20),
+
+    shadowColor: "#dee2e6",
+    // shadowRadius: 8,
+    elevation: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowOpacity: 1,
+
+    shadowOffset: { width: 5, height: 5},
+  },
+  imgInner: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 100,
+    position: "absolute",
+    overflow:"hidden"
+    
+
+
+  },
+  txtContainer: {
+    position: "absolute",
+    // top: 0,
+  },
 });
 
 export default Signup;

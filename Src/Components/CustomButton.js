@@ -42,6 +42,7 @@ function CustomButton({
   alignSelf,
   paddingHorizontal,
   paddingVertical,
+  shadowColor,
   ...props
 }) {
   return (
@@ -62,6 +63,14 @@ function CustomButton({
           alignSelf: alignSelf || "center",
           justifyContent: justifyContent || "center",
           marginTop,
+          shadowColor: shadowColor||  "#adb5bd",
+          shadowRadius: 8,
+          elevation: 20,
+          alignItems: "center",
+          justifyContent: "center",
+          shadowOpacity: 1,
+      
+          shadowOffset: { width: 3, height: 3},
           marginBottom: marginBottom,
           marginHorizontal: marginHorizontal,
           paddingVertical: paddingVertical || verticalScale(12),
@@ -73,11 +82,11 @@ function CustomButton({
       <View style={{flexDirection:"row", paddingHorizontal:20}}>
         
       {props.google ? (
-        <View style={{flex:3.5}}>
+        <View style={{flex:3.5,}}>
         <Image
           style={{
             width: moderateScale(22),
-            height: verticalScale(19),
+            height: verticalScale(22),
             // flexDirection:'row',
             // alignSelf:"center"
             // tintColor: colors.gray,

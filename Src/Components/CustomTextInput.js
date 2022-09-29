@@ -22,6 +22,9 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Divider } from "react-native-elements";
+import { Entypo } from '@expo/vector-icons'; 
+
+
 
 const CustomTextInput = ({
   eyeClick,
@@ -250,6 +253,7 @@ const CustomTextInput = ({
           numberOfLines={props.numberOfLines}
           keyboardType={props.keyboardType}
           autoCapitalize="none"
+          multiline={props.multiline}
           placeholder={props.placeholder}
           placeholderTextColor={props.placeholderTextColor}
           secureTextEntry={props.secureTextEntry}
@@ -294,13 +298,15 @@ const CustomTextInput = ({
 
         {props.downArrow ? (
           <View style={{ justifyContent:"flex-end"}}>
-            <SimpleLineIcons
+            <Entypo name="chevron-down" size={30}               color={colors.pureBlack}
+/>
+            {/* <SimpleLineIcons
               name={"arrow-down"}
               color={colors.pureBlack}
               // height={50}
               size={15}
               alignSlef={"end"}
-            />
+            /> */}
           </View>
         ) : null}
       </TouchableOpacity>
