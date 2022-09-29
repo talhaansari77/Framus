@@ -29,7 +29,7 @@ const Row = styled(View, {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal:10,
-    marginTop:Platform.OS="ios"?verticalScale(40):verticalScale(30)
+    // marginTop:Platform.OS="ios"?verticalScale(40):verticalScale(30)
 
 });
 

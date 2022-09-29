@@ -78,10 +78,10 @@ const Signup = ({ navigation }) => {
       <CustomTextInput
         placeholder="username"
         height={60}
-        placeholderTextColor={colors.black}
+        placeholderTextColor={colors.lightGray}
         borderRadius={10}
         fontFamily={"regular"}
-        backgroundColor={colors.black}
+        backgroundColor={colors.white}
         color={colors.black}
         value={userName}
         onChangeText={(nam) => {

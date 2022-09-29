@@ -17,7 +17,7 @@ const MainStack = () => {
         headerShown: false,
         tabBarShowLabel: false,
       })}
-      initialRouteName="WelcomeCollection"
+      initialRouteName="MyCollection"
 
     >
 
