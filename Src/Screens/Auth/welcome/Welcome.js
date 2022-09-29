@@ -49,19 +49,7 @@ const Welcome = ({ navigation }) => {
 
         <Spacer height={Platform.OS == "ios" ? 30 : 20} />
 
-        {/* <View
-          style={{
-            shadowOffset: { width: 2, height: 3 },
-            shadowColor: "#100C3E",
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-            width: "100%",
-            alignItems: "center",
-            alignSelf: "center",
-            justifyContent: "center"
-            // elevation: 1
-          }}
-        > */}
+    
         <CustomButton
           title="Sign In"
           SelfAlign={"center"}
@@ -80,16 +68,7 @@ const Welcome = ({ navigation }) => {
 
         <Spacer height={10} />
 
-        {/* <View
-          style={{
-            shadowOffset: { width: 2, height: 3 },
-            shadowColor: "#100C3E",
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-            width: "100%",
-            // elevation: 1
-          }}
-        > */}
+    
         <CustomButton
           title="Sign Up"
           borderRadius={15}

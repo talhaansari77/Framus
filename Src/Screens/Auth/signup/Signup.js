@@ -198,6 +198,8 @@ const Signup = ({ navigation }) => {
               navigation.navigate("MainStack", { screen: "WelcomeCollection" });
           }}
         />
+
+
       </ScrollView>
     </Container>
 
