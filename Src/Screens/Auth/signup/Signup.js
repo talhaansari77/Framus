@@ -46,8 +46,6 @@ const Signup = ({ navigation }) => {
     if (response) {
       console.log("ok");
     }
-
-    // {!data ? (navigation.navigate("MainStack",{screen:"WelcomeCollection"})) : ("")}
   };
 
   return (
@@ -71,13 +69,19 @@ const Signup = ({ navigation }) => {
       </TouchableOpacity>
 
       <Spacer height={20} />
+
+      <CustomText 
+        placeholder="hellloo"
+        height={60}
+        
+      />
       <CustomTextInput
         placeholder="username"
         height={60}
-        placeholderTextColor={colors.lightGray}
+        placeholderTextColor={colors.black}
         borderRadius={10}
         fontFamily={"regular"}
-        backgroundColor={colors.white}
+        backgroundColor={colors.black}
         color={colors.black}
         value={userName}
         onChangeText={(nam) => {
