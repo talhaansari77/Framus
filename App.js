@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import { LogBox, View } from "react-native";
+import RootNavigator from "./Src/Routes";
+
+import { Provider } from "redux";
+import { store } from "./Src/Redux/Store";
+import { useFonts } from "expo-font";
+
+LogBox.ignoreLogs(["VirtualizedLists", "Warning:..."]);
+LogBox.ignoreAllLogs();
 
 export default function App() {
+  const [loaded] = useFonts({
+    lovers: require("./Assets/Fonts/LoversQuarrel-Regular.ttf"),
+    inter: require("./Assets/Fonts/Inter-VariableFont_slnt.ttf"),
+    mediun:require("./Assets/Fonts/Inter_Medium.otf"),
+  });
+
+  if (!loaded) return <View />;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    //  <Provider store={store}>
+    <RootNavigator />
+    //  </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
