@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput,TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { ScaledSheet } from "react-native-size-matters";
 import gallery from "../../../../../Assets/Gallery";
@@ -7,19 +7,22 @@ import { colors } from "../../../../Utils/Colors";
 import CustomTextInput from "../../../../Components/CustomTextInput";
 import ToggleSwitch from "toggle-switch-react-native";
 import CustomText from "../../../../Components/CustomText";
+import * as ImagePicker from 'expo-image-picker'
 
 const ImageContainer = () => {
   const [isOn, setisOn] = useState(true);
+  const [image, setImage] = useState('');
 
-//   const toggleSwitch = () => setisOn((previousState) => !previousState);
+  //   const toggleSwitch = () => setisOn((previousState) => !previousState);
 
   return (
     <View style={styles.mainContainer}>
       <View style={styles.imgContainer}>
-        <TouchableOpacity 
-        activeOpacity={0.7}
-        style={styles.childContainer}>
-          <Image source={gallery.uploadImage} style={commonStyles.img} />
+        <TouchableOpacity
+          onPress={() => OpenImageLib(setImage)}
+          activeOpacity={0.7}
+          style={styles.childContainer}>
+          <Image source={image ? { uri: image ? image : '' } : gallery.uploadImage} style={commonStyles.img} />
         </TouchableOpacity>
       </View>
       <View>
@@ -72,6 +75,23 @@ const ImageContainer = () => {
 
 export default ImageContainer;
 
+const OpenImageLib = async (setImageCase) => {
+  let permissionResult =
+    await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+  if (permissionResult.granted === false) {
+    alert("Permission to access camera roll is required!");
+    return;
+  }
+
+  let pickerResult = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    // allowsEditing: true,
+  });
+  console.log(pickerResult);
+  setImageCase(pickerResult.uri);
+};
+
 const styles = ScaledSheet.create({
   mainContainer: {
     height: "70%",
@@ -105,7 +125,7 @@ const styles = ScaledSheet.create({
     height: 70,
     padding: 10,
   },
-  secondInput:{
+  secondInput: {
     flexDirection: "row",
     width: "100%",
     height: 60,
