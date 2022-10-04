@@ -7,7 +7,8 @@ const gallery = {
     galleryMainImage03:require('./galleryMainImage03.png'),
     uploadImage:require('./uploadImage.png'),
     splashImage:require('./splashImage.png'),
-    framus:require('./framus.png'),
-
+    framus:require('./framus.png'), 
+    galleryMainImage04:require('./galleryMainImage04.png'), 
+    
 }
 export default gallery;
