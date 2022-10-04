@@ -38,151 +38,82 @@ const MyCollection = () => {
   const viewItemsChanged = useRef(({ viewableItems }) => {
     setCurrentIndex(viewableItems[0].index);
   }).current;
-  const dataImage = ["#333", "#FF6633", "#FFB399", "#FF3399", "#99FF99"];
-  // const dataImage = [
-  //   <Image
-  //     resizeMode={"cover"}
-  //     style={{ height: 220, width: "100%" }}
-  //     source={gallery.galleryMainImage04}
-  //     blurRadius={0}
-  //   />,
+  const dataImage = [gallery.galleryMainImage01, gallery.galleryMainImage02, gallery.galleryMainImage03,];
 
-  //   <Image
-  //     resizeMode={"cover"}
-  //     style={{ height: 220, width: "100%" }}
-  //     source={gallery.galleryMainImage04}
-  //     blurRadius={0}
-  //   />,
 
-  //   <Image
-  //     resizeMode={"cover"}
-  //     style={{ height: 220, width: "100%" }}
-  //     source={gallery.galleryMainImage04}
-  //     blurRadius={0}
-  //   />,
-  // ];
-
-  const [page, setPage] = useState(0);
-
-  const ref = useRef(null);
-
-  const moveForward = () => {
-    if (page + 1 <= 2) {
-      ref?.current?.goToSlide(page + 1);
-      setPage(page + 1);
-    } else {
-      //   navigation.navigate("Registration");
+  const scrollTo = (pointer) => {
+    if (currentIndex < dataImage.length - 1 && pointer === "right") {
+      console.log('right', currentIndex)
+      sliderRef.current.scrollToIndex({ index: currentIndex + 1 })
+    } else if (currentIndex > 0 && pointer === "left") {
+      console.log('left', currentIndex)
+      sliderRef.current.scrollToIndex({ index: currentIndex - 1 })
     }
-  };
-
+    else {
+      console.log("The End", currentIndex);
+    }
+  }
   return (
     <Container>
       {/* <SafeAreaView> */}
-        <MyCollections>
-          <View
-            style={{ alignSelf: "center", paddingHorizontal: 8, marginTop: 7 }}
-          >
-            {/* <FontAwesome5
+      <MyCollections>
+        <View
+          style={{ alignSelf: "center", paddingHorizontal: 8, marginTop: 7 }}
+        >
+          {/* <FontAwesome5
             name="bell"
             backgroundColor={colors.black}
             size={22}
           /> */}
-            <TouchableOpacity activeOpacity={0.6}>
-              <View>
-                <Image
-                  source={icons.bellIcon}
-                  style={{ height: 23, width: 35 }}
-                  resizeMode={"contain"}
-                />
-              </View>
-            </TouchableOpacity>
-            <IconNumber>
-              <CustomText
-                label="12"
-                fontSize={8}
-                alignSelf={"center"}
-                fontFamily={"regular"}
-                color={colors.white}
-              />
-            </IconNumber>
-          </View>
-
-          <View>
-            <CustomText
-              label="My Collection"
-              fontFamily={"bold"}
-              fontSize={20}
-              color={colors.black}
-            />
-          </View>
-          <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" }}>
+          <TouchableOpacity activeOpacity={0.6}>
             <View>
               <Image
-                source={icons.settingIcon}
-                style={{ height: 20, width: 35 }}
+                source={icons.bellIcon}
+                style={{ height: 23, width: 35 }}
                 resizeMode={"contain"}
-                alignSelf={"center"}
-                marginBottom={8}
               />
             </View>
           </TouchableOpacity>
-        </MyCollections>
+          <IconNumber>
+            <CustomText
+              label="12"
+              fontSize={8}
+              alignSelf={"center"}
+              fontFamily={"regular"}
+              color={colors.white}
+            />
+          </IconNumber>
+        </View>
+
+        <View>
+          <CustomText
+            label="My Collection"
+            fontFamily={"bold"}
+            fontSize={20}
+            color={colors.black}
+          />
+        </View>
+        <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" }}>
+          <View>
+            <Image
+              source={icons.settingIcon}
+              style={{ height: 20, width: 35 }}
+              resizeMode={"contain"}
+              alignSelf={"center"}
+              marginBottom={8}
+            />
+          </View>
+        </TouchableOpacity>
+      </MyCollections>
       {/* </SafeAreaView> */}
-      <View style={{ height: 230, width: "100%" }}>
-        <Carousel
-          // style={{ width: "100%", padding: 0 }}
-          // ref={(c) => { this._carousel = c; }}
-          data={dataImage}
-          ref={ref}
-          onScrollIndexChanged={(index) => setPage(index)}
-          renderItem={() => (
-            <View
-              style={{
-                width: "100%",
-                height: 220,
-                justifyContent: "center",
-                alignItems: "center",
-                overflow: "hidden",
-                borderRadius: moderateScale(12),
-                // backgroundColor: item,
-                height: 230,
-                // width:"100%",
-                width: 358,
-                marginHorizontal: 10,
-                borderRadius: 12,
-              }}
-            >
-              <View style={{ position: "absolute", width: 152, zIndex: 1000 }}>
-                <Image
-                  resizeMode={"cover"}
-                  style={{ height: 220, width: "100%" }}
-                  source={gallery.galleryMainImage04}
-                  blurRadius={0}
-                />
-              </View>
-              <Image
-                source={gallery.galleryMainImage01}
-                style={{ width: "130%", height: "100%" }}
-                resizeMode={"cover"}
-                blurRadius={6}
-              />
-            </View>
-          )}
-          layout={"default"}
-          // ref={(c) => {console.log("C Data",c)}}
-          // ref={(c) => { c._carousel = c; }}
-          sliderWidth={Dimensions.get("window").width / 1.1}
-          itemWidth={Dimensions.get("window").width / 1.2}
-          // activeSlideAlignment={"center"}
-          // sliderWidth={390}
-          // itemWidth={390}
-        />
-        {/* <FlatList
+      <View style={{ height: 230, width: "100%", justifyContent: "center", alignItems: "center" }}>
+
+        <FlatList
           data={dataImage}
           keyExtractor={(item) => String(item)}
           scrollEventThrottle={32}
-          onScroll={Animated.event([{nativeEvent:{contentOffset:{x:scrollX}}}],{
-            useNativeDriver:false
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+            useNativeDriver: false
           })}
           onViewableItemsChanged={viewItemsChanged}
           viewabilityConfig={viewConfig}
@@ -193,86 +124,49 @@ const MyCollection = () => {
           // scrollEventThrottle={16}
           bounces={false}
           pagingEnabled
-          ListFooterComponent={() => {
-            <>
-              <Spacer height={10} />
-              <MyCollections>
-                <TouchableOpacity activeOpacity={0.6}>
-                  <ArrowButton>
-                    <Entypo name="chevron-small-left" size={27} />
-                  </ArrowButton>
-                </TouchableOpacity>
 
-                <TouchableOpacity
-                  activeOpacity={0.6}
-                  style={{ alignSelf: "center" }}
-                >
-                  <View>
-                    <AntDesign name="hearto" size={27} />
-                  </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity activeOpacity={0.6}>
-                  <ArrowButton>
-                    <Entypo name="chevron-small-right" size={27} />
-                  </ArrowButton>
-                </TouchableOpacity>
-              </MyCollections>
-            </>;
-          }}
           renderItem={({ item }) => (
             // <></>
             <View
-          style={{
-          width: "100%",
-          height: 220,
-          justifyContent: "center",
-          alignItems: "center",
-          overflow: "hidden",
-          borderRadius: moderateScale(12),
-          // backgroundColor: item,
+              style={{
+                // width: "100%",
+                height: 220,
+                justifyContent: "center",
+                alignItems: "center",
+                overflow: "hidden",
+                borderRadius: moderateScale(12),
+                // backgroundColor: item,
                 height: 230,
-                // width:"100%",
-                width: 358,
+                // width:"100%", 
+                width: 292,
                 marginHorizontal: 10,
                 borderRadius: 12,
-        }}
-      >
-        <View style={{ position: "absolute", width: 152, zIndex: 1000 }}>
-          <Image
-            resizeMode={"cover"}
-            style={{ height: 220, width: "100%" }}
-            source={gallery.galleryMainImage04}
-            blurRadius={0}
-          />
-        </View>
-        <Image
-          source={gallery.galleryMainImage01}
-          style={{ width: "130%", height: "100%" }}
-          resizeMode={"cover"}
-          blurRadius={6}
-        />
-      </View>
-            // <View
-            //   style={{
-            //     backgroundColor: item,
-            //     height: 230,
-            //     // width:"100%",
-            //     width: 358,
-            //     marginHorizontal: 10,
-            //     borderRadius: 12,
-            //   }}
-            // >
-            //   <Image source={profile.profilePhoto} />
-            // </View>
+              }}
+            >
+              <View style={{ position: "absolute", width: 152, zIndex: 1000 }}>
+                <Image
+                  // resizeMode={"contain"}
+                  style={{ height: 230, width: "100%" }}
+                  source={item}
+                  blurRadius={0}
+                />
+              </View>
+              <Image
+                source={item}
+                style={{ width: "130%", height: "100%" }}
+                resizeMode={"cover"}
+                blurRadius={6}
+              />
+            </View>
+
           )}
-        /> */}
+        />
       </View>
       <Spacer height={10} />
       <MyCollections>
         <TouchableOpacity
           activeOpacity={0.6}
-          // onPress={() => {refs.carousel.snapToNext(); }}
+          onPress={(() => scrollTo("left"))}
         >
           <ArrowButton>
             <Entypo name="chevron-small-left" size={27} />
@@ -286,42 +180,14 @@ const MyCollection = () => {
         </TouchableOpacity>
 
         <TouchableOpacity activeOpacity={0.6}
-        onPress={(() => moveForward())}
+          onPress={(() => scrollTo("right"))}
         >
           <ArrowButton>
             <Entypo name="chevron-small-right" size={27} />
           </ArrowButton>
         </TouchableOpacity>
       </MyCollections>
-      {/* <View> */}
 
-      {/* <View
-        style={{
-          width: "100%",
-          height: 220,
-          justifyContent: "center",
-          alignItems: "center",
-          overflow: "hidden",
-          borderRadius: moderateScale(12),
-        }}
-      >
-        <View style={{ position: "absolute", width: 152, zIndex: 1000 }}>
-          <Image
-            resizeMode={"cover"}
-            style={{ height: 220, width: "100%" }}
-            source={gallery.galleryMainImage04}
-            blurRadius={0}
-          />
-        </View>
-        <Image
-          source={gallery.galleryMainImage01}
-          style={{ width: "130%", height: "100%" }}
-          resizeMode={"cover"}
-          blurRadius={6}
-        />
-      </View> */}
-
-      {/* </View> */}
       <Spacer height={20} />
       <MyCollectionGallery />
     </Container>
