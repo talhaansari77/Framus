@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "../../Screens/Main/Home";
+// import Home from "../../Screens/Main/Home";r
 import { Platform, View } from "react-native";
 import styled from "react-native-styled-components";
 import WelcomeCollection from "../../Screens/Main/MyCollection/WelcomeCollection";

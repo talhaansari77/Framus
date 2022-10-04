@@ -10,7 +10,7 @@ import { Spacer } from '../../../Components/Spacer'
 // import TopNav from './molecules/TopNav'
 
 const SelectScreen = () => {
-    const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    const num = [gallery.collection01, gallery.collection02, gallery.collection03, gallery.collection03, gallery.collection02, gallery.collection01, gallery.collection02, gallery.collection03, gallery.collection02, gallery.collection01, gallery.collection01, gallery.collection02, gallery.collection03, gallery.collection02, gallery.collection03, gallery.collection01, gallery.collection02, gallery.collection01]
     const TopNav = () => (
 
         <Row>
@@ -34,8 +34,8 @@ const SelectScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <ImageContainer>
                     {num.map((item, index) => (
-                        <TouchableOpacity activeOpacity={0.7} style={{ width: Dimensions.get('window').width / 3, height: 138 }}>
-                            <Image source={gallery.gallery01} style={{ width: "100%", height: '100%' }} />
+                        <TouchableOpacity activeOpacity={0.7} style={{ width: Dimensions.get('window').width / 3.04, height: 138, marginBottom: 1 }}>
+                            <Image source={item} style={{ width: "100%", height: '100%' }} resizeMode="contain" />
                         </TouchableOpacity>
                     ))}
                 </ImageContainer>
@@ -67,6 +67,9 @@ const ImageContainer = styled(View, {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
+    justifyContent: "space-between",
+    height: "100%",
+    backgroundColor: "black"
 });
 const Flex = styled(View, (props) => ({
     flex: props.size
