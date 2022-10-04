@@ -46,8 +46,6 @@ const Signup = ({ navigation }) => {
     if (response) {
       console.log("EditValidate-response", response);
     }
-
-    // {!data ? (navigation.navigate("MainStack",{screen:"WelcomeCollection"})) : ("")}
   };
 
   return (
@@ -63,7 +61,7 @@ const Signup = ({ navigation }) => {
       <TouchableOpacity activeOpacity={0.7}>
         <View>
           <Image
-            source={profile.profilePhoto}
+            source={profile.profilePhotoUpload}
             justifyContent={"center"}
             alignSelf={"center"}
           />
@@ -71,6 +69,12 @@ const Signup = ({ navigation }) => {
       </TouchableOpacity>
 
       <Spacer height={20} />
+
+      <CustomText 
+        placeholder="hellloo"
+        height={60}
+        
+      />
       <CustomTextInput
         placeholder="username"
         height={60}

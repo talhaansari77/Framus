@@ -12,6 +12,7 @@ const WelcomeCollection = ({navigation}) => {
   return (
     <Container>
       {/* <SafeAreaView> */}
+      <Spacer height={20}/>
         <MyCollection>
           <View
             style={{ alignSelf: "center", paddingHorizontal: 8, marginTop: 7 }}

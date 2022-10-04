@@ -37,7 +37,7 @@ const Welcome = ({ navigation }) => {
         />
         <CustomText
           label={"Living in Your Home"}
-          marginTop={-8}
+          marginTop={Platform.OS=="ios"?-8:-14}
           color={colors.darkBlack}
           fontSize={"25"}
           fontFamily={"regular"}

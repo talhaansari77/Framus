@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View,TouchableOpacity, Platform } from "react-native";
-import React,{useState} from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Platform } from "react-native";
+import React, { useState } from "react";
 import CustomText from "../../../../Components/CustomText";
 import { colors } from "../../../../Utils/Colors";
 import { verticalScale } from "react-native-size-matters";
@@ -8,28 +8,28 @@ import { moderateScale } from "react-native-size-matters";
 
 
 const TermAndCondition = () => {
-    const [check, setCheck] = useState(false)
+  const [check, setCheck] = useState(false)
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity
-      activeOpacity={0.6}
-      onPress={()=>{
+        activeOpacity={0.6}
+        onPress={() => {
           setCheck(!check)
 
-      }}
-       style={styles.checkBox}>
-           {
-               check?(
-                <Octicons
-                name="check"
-                color={ colors.gray}
-                size={moderateScale(17)}
-                // onPress={onPress}
-              />
+        }}
+        style={styles.checkBox}>
+        {
+          check ? (
+            <Octicons
+              name="check"
+              color={colors.gray}
+              size={moderateScale(17)}
+            // onPress={onPress}
+            />
 
-               ):<></>
+          ) : <></>
 
-           }
+        }
 
 
 
@@ -54,7 +54,7 @@ const TermAndCondition = () => {
         <View
           style={{
             marginTop: verticalScale(14),
-            marginLeft: Platform.OS=="ios"? verticalScale(-112) :verticalScale(-70)
+            marginLeft: Platform.OS == "ios" ? verticalScale(-112) : verticalScale(-100)
           }}
         >
           <CustomText
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     // padding: 10,
-    paddingHorizontal:10
+    paddingHorizontal: 10
   },
   checkBox: {
     width: 22,

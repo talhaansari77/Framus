@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Modal,
+  Platform,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import gallery from "../../../../../Assets/Gallery";
@@ -17,9 +18,11 @@ import CustomModal from "../../../../Components/CustomModal";
 import { verticalScale } from "react-native-size-matters";
 import CustomTextInput from "../../../../Components/CustomTextInput";
 import CustomButton from "../../../../Components/CustomButton";
+import { useNavigation } from "@react-navigation/native";
 
 const MyCollectionGallery = () => {
-  const num = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const navigation=useNavigation();
+  const num = [gallery.gallery02,gallery.gallery03,gallery.gallery01,gallery.gallery03,gallery.gallery02,gallery.gallery03,gallery.gallery02,gallery.gallery03,gallery.gallery01];
 
   const [modalVisible, setModalVisible] = useState(false);
   
@@ -28,136 +31,47 @@ const MyCollectionGallery = () => {
       <Spacer height={Platform.OS == "ios" ? 8 : null} />
       <ImageContainer>
         {num.map((item, index) => (
-          <View>
-            <TouchableOpacity
-              activeOpacity={0.7}
+          //   <View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={{
+              width: Dimensions.get("window").width / 3.9,
+              height: Platform.OS=="ios"?110:100,
+              marginBottom: 10,
+            }}
+          >
+            <Image
+              source={item}
+              style={{ width: "100%", height: "100%", borderRadius: 12 }}
+            />
+
+            <View
               style={{
-                width: Dimensions.get("window").width / 3.9,
-                height: 110,
-                marginBottom: 10,
+                position: "absolute",
+                zIndex: 1,
+                // bottom: 90,
+                top: 7,
+                right: 10,
               }}
             >
-              <Image
-                source={gallery.gallery03}
-                style={{ width: "100%", height: "100%", borderRadius: 12 }}
-              />
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <Image source={icons.cross} style={{ width: 14, height: 14 }} />
+              </TouchableOpacity>
+            </View>
 
-              <View style={{ alignSelf: "center" }}>
-                <View
-                  style={{
-                    position: "absolute",
-                    zIndex: 1,
-                    bottom: 90,
-                    left: 35,
-                  }}
-                >
-                  <TouchableOpacity onPress={() => setModalVisible(true)}>
-                    <Image
-                      source={icons.cross}
-                      style={{ width: 14, height: 14 }}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
+          
 
-              <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                activeOpacity={0}
-                // backgroundColor={colors.white}
-                onRequestClose={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <View
-                  style={{
-                    width: "100%",
-                    padding: 30,
-                    height: "40%",
-                    bottom: 0,
-                    backgroundColor: colors.white,
-                    position: "absolute",
-                    borderTopRightRadius: 20,
-                    borderTopLeftRadius: 20,
-                  }}
-                >
-                  <Spacer height={verticalScale(20)} />
-                  <View style={{ width: "100%", paddingHorizontal: 15 }}>
-                    <CustomText
-                      label="Are you sure you want to delete this image?"
-                      fontFamily={"bold"}
-                      fontSize={"20"}
-                      alignSelf="center"
-                      align="center"
-                      textAlign="center"
-                    />
-                  </View>
-                  <Spacer height={verticalScale(6)} />
-
-                  <CustomText
-                    label="You cannot undo this action"
-                    fontFamily={"regular"}
-                    fontSize={"12"}
-                    alignSelf="center"
-                    align="center"
-                    textAlign="center"
-                  />
-                  <Spacer height={verticalScale(20)} />
-
-                  <View
-                    style={{
-                      shadowOffset: { width: 5, height: 3 },
-                      shadowColor: "#100C3E",
-                      shadowOpacity: 0.5,
-                      shadowRadius: 5,
-                      width: "100%",
-                      alignItems: "center",
-                      alignSelf: "center",
-                      justifyContent: "center",
-                      // elevation: 1
-                    }}
-                  >
-                    <CustomButton
-                      //   onPress={() =>
-                      //     onSavePersonality()
-                      //     }
-
-                      title="Yes, Delete Image"
-                      fontSize={16}
-                      borderRadius={20}
-                      height={55}
-                      backgroundColor={colors.black}
-
-                      // paddingHorizontal={50}
-                    />
-                  </View>
-                  <Spacer height={verticalScale(6)} />
-
-                  <CustomButton
-                    onPress={() => setModalVisible(!modalVisible)}
-                    title="No, Go Back"
-                    color={colors.black}
-                    backgroundColor={colors.white}
-                    borderColor={colors.black}
-                    fontSize={15}
-                    borderWidth={0}
-                  />
-                  {/* </View>
-            </View> */}
-                </View>
-              </Modal>
-
-              <View
-                style={{
-                  position: "absolute",
-                  zIndex: 1,
-                  flexDirection: "row",
-                  bottom: 27,
-                  left: 9,
-                }}
-              >
-                <Image source={icons.eye} style={{ width: 13, height: 9 }} />
+            <View
+              style={{
+                position: "absolute",
+                zIndex: 1,
+              
+                bottom: 10,
+                left: 9,
+              }}
+            >
+              <View style={{  flexDirection: "row"}}>
+                <Image source={icons.eye} style={{ width: 13, height: 9, marginTop:2 }} />
                 <CustomText
                   label="3,124,244"
                   marginLeft={4}
@@ -167,17 +81,9 @@ const MyCollectionGallery = () => {
                   fontFamily={"semiBold"}
                 />
               </View>
+              <View style={{  flexDirection: "row"}}>
+                <Image source={icons.heart} style={{ width: 12, height: 10, marginTop:2 }} />
 
-              <View
-                style={{
-                  position: "absolute",
-                  zIndex: 1,
-                  flexDirection: "row",
-                  bottom: 10,
-                  left: 9,
-                }}
-              >
-                <Image source={icons.heart} style={{ width: 13, height: 11 }} />
                 <CustomText
                   label="2,412,444"
                   marginLeft={4}
@@ -187,16 +93,107 @@ const MyCollectionGallery = () => {
                   fontFamily={"semiBold"}
                 />
               </View>
-            </TouchableOpacity>
-          </View>
+            </View>
+          </TouchableOpacity>
+          //   {/* </View> */}
         ))}
       </ImageContainer>
       <Spacer height={Platform.OS == "ios" ? 10 : null} />
       {/* <Spacer height={10}  /> */}
-
-      <View style={{ display: "flex", alignSelf: "center" }}>
+      {/* navigation.navigate("UploadImages") */}
+      <TouchableOpacity onPress={() => navigation.navigate("UploadImages")}>
+      <View onPress={()=>console.log('kajsld')} style={{ display: "flex", alignSelf: "center" }}>
         <Image source={icons.upload} style={{ height: 80, width: 80 }} />
       </View>
+      </TouchableOpacity>  
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        activeOpacity={0}
+        // backgroundColor={colors.white}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View
+          style={{
+            width: "100%",
+            padding: 30,
+            height: "40%",
+            bottom: 0,
+            backgroundColor: colors.white,
+            position: "absolute",
+            borderTopRightRadius: 20,
+            borderTopLeftRadius: 20,
+          }}
+        >
+          <Spacer height={verticalScale(20)} />
+          <View style={{ width: "100%", paddingHorizontal: 15 }}>
+            <CustomText
+              label="Are you sure you want to delete this image?"
+              fontFamily={"bold"}
+              fontSize={"20"}
+              alignSelf="center"
+              align="center"
+              textAlign="center"
+            />
+          </View>
+          <Spacer height={verticalScale(6)} />
+
+          <CustomText
+            label="You cannot undo this action"
+            fontFamily={"regular"}
+            fontSize={"12"}
+            alignSelf="center"
+            align="center"
+            textAlign="center"
+          />
+          <Spacer height={verticalScale(20)} />
+
+          <View
+            style={{
+              shadowOffset: { width: 5, height: 3 },
+              shadowColor: "#100C3E",
+              shadowOpacity: 0.5,
+              shadowRadius: 5,
+              width: "100%",
+              alignItems: "center",
+              alignSelf: "center",
+              justifyContent: "center",
+              // elevation: 1
+            }}
+          >
+            <CustomButton
+              //   onPress={() =>
+              //     onSavePersonality()
+              //     }
+
+              title="Yes, Delete Image"
+              fontSize={16}
+              borderRadius={20}
+              height={55}
+              backgroundColor={colors.black}
+
+              // paddingHorizontal={50}
+            />
+          </View>
+          <Spacer height={verticalScale(6)} />
+
+          <CustomButton
+            onPress={() => setModalVisible(!modalVisible)}
+            title="No, Go Back"
+            color={colors.black}
+            backgroundColor={colors.white}
+            borderColor={colors.black}
+            fontSize={15}
+            borderWidth={0}
+          />
+          {/* </View>
+            </View> */}
+        </View>
+      </Modal>
     </View>
   );
 };

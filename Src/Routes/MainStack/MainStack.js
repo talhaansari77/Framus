@@ -18,7 +18,9 @@ const MainStack = () => {
         tabBarShowLabel: false,
       })}
 
-      // initialRouteName="UploadImages"
+
+      initialRouteName="UploadImages"
+
 
     >
 
