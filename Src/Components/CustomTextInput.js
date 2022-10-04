@@ -296,7 +296,7 @@ const CustomTextInput = ({
           <View style={{ marginRight: 10 }}>
             <SimpleLineIcons
               name={"arrow-down"}
-              color={colors.lightWhite}
+              color={colors.pureBlack}
               // height={50}
               size={15}
               alignSlef={"end"}

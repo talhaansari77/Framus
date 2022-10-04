@@ -8,6 +8,21 @@ export const EditValidate = (data, submitError, setSubmitError, nameList) => {
       userNameError: "User Name is required",
     });
   }
+
+  if (!data.firstName) {
+    return setSubmitError({
+      ...submitError,
+      firstNameError: "First Name is required",
+    });
+  }
+
+  if (!data.lastName) {
+    return setSubmitError({
+      ...submitError,
+      lastNameError: "Last Name is required",
+    });
+  }
+
   let filterData = nameList.filter((user) => user.name.toLowerCase()==data.userName.toLowerCase());
   
   if(filterData.length>0) {

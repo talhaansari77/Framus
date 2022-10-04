@@ -1,4 +1,4 @@
-import { View, Text, Image, SafeAreaView } from "react-native";
+import { View, Text, Image, SafeAreaView, Platform } from "react-native";
 import React from "react";
 import styled from "react-native-styled-components";
 import CustomText from "../../../Components/CustomText";
@@ -8,10 +8,10 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { Spacer } from "../../../Components/Spacer";
 import CustomButton from "../../../Components/CustomButton";
 
-const WelcomeCollection = () => {
+const WelcomeCollection = ({navigation}) => {
   return (
     <Container>
-      <SafeAreaView>
+      {/* <SafeAreaView> */}
         <MyCollection>
           <View
             style={{ alignSelf: "center", paddingHorizontal: 8, marginTop: 7 }}
@@ -46,7 +46,7 @@ const WelcomeCollection = () => {
             />
           </View>
         </MyCollection>
-      </SafeAreaView>
+      {/* </SafeAreaView> */}
 
       <Spacer height={100} />
       <Container1>
@@ -81,6 +81,7 @@ const WelcomeCollection = () => {
             title="Add Your Artwork"
             borderRadius={15}
             backgroundColor={colors.black}
+            onPress={() => navigation.navigate("MyCollection")}
           />
         </View>
       </Container1>
@@ -100,7 +101,7 @@ const Container = styled(View, {
 const Container1 = styled(View, {
   display: "flex",
   width: "100%",
-  padding: 45,
+  padding: Platform.OS=='ios'?45:35,
   flex: 1,
   backgroundColor: "#f3f3f3",
   // backgroundColor: "red",
