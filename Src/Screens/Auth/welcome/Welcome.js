@@ -8,6 +8,7 @@ import { colors } from "../../../Utils/Colors";
 import { Spacer } from "../../../Components/Spacer";
 import CustomButton from "../../../Components/CustomButton";
 import icons from "../../../../Assets/Icons";
+import { Shadow } from 'react-native-shadow-2';
 
 const Welcome = ({ navigation }) => {
   return (
@@ -22,13 +23,16 @@ const Welcome = ({ navigation }) => {
         />
 
         <BottomShadow>
-          <Spacer height={Platform.OS=="ios"?18:5} />
-          <View>
-            <Image source={gallery.splashImage} />
-          </View>
+
+          <Spacer height={Platform.OS == "ios" ? 18 : 5} />
+          <Image source={gallery.splashImage} style={{ zIndex: 10 }} />
+          {Platform.OS == "ios" ? <></> : <Shadow style={{ position: "absolute" }} distance={20} offset={[30, -220]}>
+            <Spacer height={200} width={230} />
+          </Shadow>}
+
         </BottomShadow>
 
-        <Spacer height={Platform.OS=="ios"?40:25} />
+        <Spacer height={Platform.OS == "ios" ? 40 : 25} />
         <CustomText
           label={"AI Generated Art"}
           color={colors.darkBlack}
@@ -37,13 +41,13 @@ const Welcome = ({ navigation }) => {
         />
         <CustomText
           label={"Living in Your Home"}
-          marginTop={Platform.OS=="ios"?-8:-14}
+          marginTop={Platform.OS == "ios" ? -8 : -14}
           color={colors.darkBlack}
           fontSize={"25"}
           fontFamily={"regular"}
         />
 
-        <Spacer height={Platform.OS=="ios"?30:20} />
+        <Spacer height={Platform.OS == "ios" ? 30 : 20} />
 
         {/* <View
           style={{
@@ -58,20 +62,20 @@ const Welcome = ({ navigation }) => {
             // elevation: 1
           }}
         > */}
-          <CustomButton
-            title="Sign In"
-            SelfAlign={"center"}
-            alignItems="center"
-            alignSelf={"center"}
-            borderRadius={15}
-            shadowColor={"#adb5bd"}
-            backgroundColor={colors.white}
-            color={colors.black}
-            // verticalPadding={80}
-            // paddingVertical={20}
-            google
-            onPress={() => navigation.navigate("Signup")}
-          />
+        <CustomButton
+          title="Sign In"
+          SelfAlign={"center"}
+          alignItems="center"
+          alignSelf={"center"}
+          borderRadius={15}
+          shadowColor={"#adb5bd"}
+          backgroundColor={colors.white}
+          color={colors.black}
+          // verticalPadding={80}
+          // paddingVertical={20}
+          google
+          onPress={() => navigation.navigate("Signup")}
+        />
         {/* </View> */}
 
         <Spacer height={10} />
@@ -86,26 +90,26 @@ const Welcome = ({ navigation }) => {
             // elevation: 1
           }}
         > */}
-          <CustomButton
-            title="Sign Up"
-            borderRadius={15}
-            shadowColor={"#adb5bd"}
+        <CustomButton
+          title="Sign Up"
+          borderRadius={15}
+          shadowColor={"#adb5bd"}
 
-            backgroundColor={colors.black}
-            color={colors.white}
-            google
-            onPress={() => navigation.navigate("Signup")}
-          />
+          backgroundColor={colors.black}
+          color={colors.white}
+          google
+          onPress={() => navigation.navigate("Signup")}
+        />
         {/* </View> */}
 
         <Spacer height={30} />
 
-        <View style={{ justifyContent: "center", alignItems: "center",marginBottom:40 }}>
+        <View style={{ justifyContent: "center", alignItems: "center", marginBottom: 40 }}>
           <View>
             <CustomText
               label="By continuing you agree to our"
               fontFamily={"light"}
-              fontWeight={Platform.OS=="ios"? "700":"500"}
+              fontWeight={Platform.OS == "ios" ? "700" : "500"}
               fontSize={11}
               marginBottom={4}
             />
@@ -137,12 +141,15 @@ const Center = styled(View, {
 });
 
 const BottomShadow = styled(View, {
+  // height:285,
+  // width:250,
   shadowOffset: { width: 6, height: 20 },
   shadowColor: "#100C3E",
   shadowOpacity: 0.4,
   shadowRadius: 10,
-  elevation:10
-  
+  // elevation: 5,
+  // backgroundColor: '#eee'
+
 });
 
 export default Welcome;

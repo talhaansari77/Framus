@@ -86,7 +86,11 @@ const WelcomeCollection = ({navigation}) => {
             title="Add Your Artwork"
             borderRadius={15}
             backgroundColor={colors.black}
+            offsetX={20}
+            offsetY={12}
+            sw={1.6}
             onPress={() => navigation.navigate("MyCollection")}
+
           />
         </View>
       </Container1>

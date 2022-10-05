@@ -106,7 +106,7 @@ const MyCollectionGallery = () => {
       {/* <Spacer height={10}  /> */}
       {/* navigation.navigate("UploadImages") */}
       <TouchableOpacity onPress={() => navigation.navigate("UploadImages")}>
-      <View onPress={()=>console.log('kajsld')} style={{ display: "flex", alignSelf: "center" }}>
+      <View style={{ display: "flex", alignSelf: "center" }}>
         <Image source={icons.upload} style={{ height: 80, width: 80 }} />
       </View>
       </TouchableOpacity>  

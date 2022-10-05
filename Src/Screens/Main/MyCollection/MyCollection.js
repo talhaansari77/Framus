@@ -230,6 +230,7 @@ const ArrowButton = styled(View, {
   alignItems: "center",
   alignSelf: "center",
   justifyContent: "center",
+  elevation:10
 });
 
 const Container1 = styled(View, {

@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, Platform,ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity, Platform, ScrollView } from "react-native";
 import React, { Profiler, useState } from "react";
 import styled from "react-native-styled-components";
 import CustomText from "../../../Components/CustomText";
@@ -8,11 +8,11 @@ import CustomTextInput from "../../../Components/CustomTextInput";
 import { colors } from "react-native-elements";
 import CustomButton from "../../../Components/CustomButton";
 import { EditValidate } from "./UseEditProfile";
-import { ScaledSheet, verticalScale} from "react-native-size-matters";
+import { ScaledSheet, verticalScale } from "react-native-size-matters";
 import icons from "../../../../Assets/Icons";
 import * as ImagePicker from 'expo-image-picker'
 import commonStyles from "../../../Utils/CommonStyles";
-
+import { Shadow } from 'react-native-shadow-2';
 
 const Signup = ({ navigation }) => {
   const [userName, setUserName] = useState("");
@@ -58,12 +58,12 @@ const Signup = ({ navigation }) => {
   const OpenImageLib = async (setImageCase) => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
-  
+
     if (permissionResult.granted === false) {
       alert("Permission to access camera roll is required!");
       return;
     }
-  
+
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       // allowsEditing: true,
@@ -73,134 +73,134 @@ const Signup = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={{flex:1}}>
-
     <Container>
-      <Spacer height={Platform.OS=="ios"?60:30} />
-      <CustomText
-        label="Profile"
-        fontFamily={"bold"}
-        fontSize={20}
-        alignSelf={"center"}
-      />
-       <View
-        style={{
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <TouchableOpacity activeOpacity={0.7}
-                  onPress={() => OpenImageLib(setImage)}
+      <ScrollView showsVerticalScrollIndicator={false}>
 
-         style={styles.imgContainer}>
-          <View style={styles.imgInner}>
-            {/* <Entypo name="user" size={200} color="black" /> */}
-            {/* <Image
-              source={icons.profile}
-              resizeMode="cover"
-              style={{ width: "100%", height: "100%" }}
-            /> */}
+        <Spacer height={Platform.OS == "ios" ? 60 : 30} />
+        <CustomText
+          label="Profile"
+          fontFamily={"bold"}
+          fontSize={20}
+          alignSelf={"center"}
+        />
+        <View
+          style={{
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
 
-<Image source={image ? { uri: image ? image : '' } :icons.profile}                 resizeMode="cover"
- style={commonStyles.img} />
 
-          
-          </View>
-          <View style={styles.txtContainer}>
-              <CustomText label="Upload" color={colors.white} fontSize={15}  fontFamily={"semiBold"} />
+          {Platform.OS == "ios" ? <></> : <Shadow style={{ position: "absolute", height: 150, width: 150, borderRadius: 75, zIndex: -100 }} distance={17} offset={[-70, 40]}></Shadow>}
+          <TouchableOpacity activeOpacity={0.7}
+            onPress={() => OpenImageLib(setImage)}
+            style={styles.imgContainer}>
+
+            <View style={styles.imgInner}>
+
+
+              <Image source={image ? { uri: image ? image : '' } : icons.profile} resizeMode="cover"
+                style={commonStyles.img} />
+
+
             </View>
-          {/* <View>
+
+            <View style={styles.txtContainer}>
+              <CustomText label="Upload" color={colors.white} fontSize={15} fontFamily={"semiBold"} />
+            </View>
+            {/* <View>
           <Image
             source={profile.profilePhoto}
             justifyContent={"center"}
             alignSelf={"center"}
           />
         </View> */}
-        </TouchableOpacity>
-      </View>
+          </TouchableOpacity>
 
-      <Spacer height={20} />
+        </View>
 
-      <CustomText 
-        placeholder="hellloo"
-        height={60}
-        
-      />
-      <CustomTextInput
-        placeholder="username"
-        height={60}
-        placeholderTextColor={colors.lightGray}
-        borderRadius={10}
-        fontFamily={"regular"}
-        backgroundColor={colors.white}
-        color={colors.black}
-        value={userName}
-        onChangeText={(nam) => {
-          setUserName(nam),
-            setSubmitError({ ...submitError, userNameError: "" });
+        <Spacer height={20} />
 
-          // let data = nameList.filter((user) => user.name.includes(txt)?user:'');
-          // data.lenght > 0 ? (setSubmitError({ ...submitError, userNameError: "" })) : ("")
-          // setFilerList(data);
-          // console.log(data);
-        }}
-        error={submitError.userNameError}
-      // onChangeText={(txt) => {
-      //   let data =SearchLists.filter((item) => item.name.includes(txt)?item:'');
-      //   setFilerList(data);
-      //   console.log(data);
-      // }}
-      />
-      <CustomTextInput
-        placeholder="First Name"
-        height={60}
-        placeholderTextColor={colors.lightGray}
-        borderRadius={10}
-        fontFamily={"regular"}
-        backgroundColor={colors.white}
-        color={colors.black}
-        marginTop={20}
-        value={firstName}
-        onChangeText={(firstnam) => {
-          setFirstName(firstnam),
-            setSubmitError({ ...submitError, firstNameError: "" });
-        }}
-        error={submitError.firstNameError}
-      />
-      <CustomTextInput
-        placeholder="Last Name"
-        height={60}
-        placeholderTextColor={colors.lightGray}
-        borderRadius={10}
-        fontFamily={"regular"}
-        backgroundColor={colors.white}
-        color={colors.black}
-        marginTop={20}
-        value={lastName}
-        onChangeText={(lastnam) => {
-          setLastName(lastnam),
-            setSubmitError({ ...submitError, lastNameError: "" });
-        }}
-        error={submitError.lastNameError}
-      />
-      <Spacer height={80} />
-      <CustomButton
-        title="Create Profile"
-        borderRadius={15}
-        fontFamily={"bold"}
-        color={colors.white}
-        backgroundColor={colors.black}
-        onPress={() => {
-          // onHandleSubmit();
-          const response = EditValidate(data, submitError, setSubmitError, nameList)
-          if (response)
-            navigation.navigate("MainStack", { screen: "WelcomeCollection" });
-        }}
-      />
+        <CustomText
+          placeholder="hellloo"
+          height={60}
+
+        />
+        <CustomTextInput
+          placeholder="username"
+          height={60}
+          placeholderTextColor={colors.lightGray}
+          borderRadius={10}
+          fontFamily={"regular"}
+          backgroundColor={colors.white}
+          color={colors.black}
+          value={userName}
+          onChangeText={(nam) => {
+            setUserName(nam),
+              setSubmitError({ ...submitError, userNameError: "" });
+
+            // let data = nameList.filter((user) => user.name.includes(txt)?user:'');
+            // data.lenght > 0 ? (setSubmitError({ ...submitError, userNameError: "" })) : ("")
+            // setFilerList(data);
+            // console.log(data);
+          }}
+          error={submitError.userNameError}
+        // onChangeText={(txt) => {
+        //   let data =SearchLists.filter((item) => item.name.includes(txt)?item:'');
+        //   setFilerList(data);
+        //   console.log(data);
+        // }}
+        />
+        <CustomTextInput
+          placeholder="First Name"
+          height={60}
+          placeholderTextColor={colors.lightGray}
+          borderRadius={10}
+          fontFamily={"regular"}
+          backgroundColor={colors.white}
+          color={colors.black}
+          marginTop={20}
+          value={firstName}
+          onChangeText={(firstnam) => {
+            setFirstName(firstnam),
+              setSubmitError({ ...submitError, firstNameError: "" });
+          }}
+          error={submitError.firstNameError}
+        />
+        <CustomTextInput
+          placeholder="Last Name"
+          height={60}
+          placeholderTextColor={colors.lightGray}
+          borderRadius={10}
+          fontFamily={"regular"}
+          backgroundColor={colors.white}
+          color={colors.black}
+          marginTop={20}
+          value={lastName}
+          onChangeText={(lastnam) => {
+            setLastName(lastnam),
+              setSubmitError({ ...submitError, lastNameError: "" });
+          }}
+          error={submitError.lastNameError}
+        />
+        <Spacer height={80} />
+        <CustomButton
+          title="Create Profile"
+          borderRadius={15}
+          fontFamily={"bold"}
+          color={colors.white}
+          backgroundColor={colors.black}
+          onPress={() => {
+            // onHandleSubmit();
+            const response = EditValidate(data, submitError, setSubmitError, nameList)
+            if (response)
+              navigation.navigate("MainStack", { screen: "WelcomeCollection" });
+          }}
+        />
+      </ScrollView>
     </Container>
 
-    </ScrollView>
 
   );
 };
@@ -220,33 +220,34 @@ const styles = ScaledSheet.create({
     height: "150@vs",
     borderRadius: 100,
     backgroundColor: "#f8f9fa",
-    elevation: 5,
-    padding: "10@s",
 
+    padding: "10@s",
     marginVertical: verticalScale(20),
 
     shadowColor: "#dee2e6",
     // shadowRadius: 8,
-    elevation: 5,
     alignItems: "center",
     justifyContent: "center",
     shadowOpacity: 1,
 
-    shadowOffset: { width: 5, height: 5},
+    shadowOffset: { width: 5, height: 5 },
+
   },
   imgInner: {
     width: "100%",
     height: "100%",
     borderRadius: 100,
     position: "absolute",
-    overflow:"hidden"
-    
-
+    overflow: "hidden",
+    zIndex: 10,
+    // elevation:100,
 
   },
   txtContainer: {
     position: "absolute",
     // top: 0,
+    zIndex: 11,
+    // elevation:11,
   },
 });
 
