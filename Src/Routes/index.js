@@ -24,7 +24,7 @@ const RootNavigator = () => {
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
         screenOptions={{ headerShown: false }}
-        // initialRouteName="MainStack"
+        initialRouteName="AuthStack"
       >
 
         <Stack.Screen name="AuthStack" component={AuthStack} />
