@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, Platform, ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity, Platform, ScrollView, Dimensions } from "react-native";
 import React, { Profiler, useState } from "react";
 import styled from "react-native-styled-components";
 import CustomText from "../../../Components/CustomText";
@@ -73,6 +73,7 @@ const Signup = ({ navigation }) => {
   };
 
   return (
+    <View style={{flex:1,backgroundColor:"#f3f3f3"}}>
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -184,13 +185,19 @@ const Signup = ({ navigation }) => {
           }}
           error={submitError.lastNameError}
         />
-        <Spacer height={80} />
+        
+      </ScrollView>
+    </Container>
+    <Spacer height={80} />
         <CustomButton
           title="Create Profile"
           borderRadius={15}
           fontFamily={"bold"}
           color={colors.white}
           backgroundColor={colors.black}
+          width={"90%"}
+          offsetX={17}
+          sw={2}
           onPress={() => {
             // onHandleSubmit();
             const response = EditValidate(data, submitError, setSubmitError, nameList)
@@ -198,9 +205,9 @@ const Signup = ({ navigation }) => {
               navigation.navigate("MainStack", { screen: "WelcomeCollection" });
           }}
         />
-      </ScrollView>
-    </Container>
-
+         {Platform.OS == "ios" ? <></> : <Shadow style={{ width: "110%", height: 40, position: "absolute" }} distance={20} offset={[ 10,  -48]}></Shadow>}
+         <Spacer height={40} />
+        </View>
 
   );
 };
