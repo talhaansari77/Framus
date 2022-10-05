@@ -293,7 +293,7 @@ const CustomTextInput = ({
         ) : null}
 
         {props.downArrow ? (
-          <View style={{ marginRight: 10 }}>
+          <View style={{ justifyContent:"flex-end"}}>
             <SimpleLineIcons
               name={"arrow-down"}
               color={colors.pureBlack}

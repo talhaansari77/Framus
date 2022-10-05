@@ -8,28 +8,33 @@ import { verticalScale } from 'react-native-size-matters'
 
 const TopNav = () => {
   return (
-  
-    <Row>
-    {/* <Spacer width={5} /> */}
-    <View >
-        <Feather name='chevron-left' size={verticalScale(25)} />
-    </View>
-    <View >
-        <CustomText label={"Upload"} fontSize={18} fontFamily={"bold"} />
-    </View>
-    <View/>
-</Row>
+
+    <>
+      <Spacer height={Platform.OS == "ios" ? 40 : 30} />
+      <Row>
+        <View>
+          <Feather name='chevron-left' size={verticalScale(25)} />
+        </View>
+        <View >
+          <CustomText label={"Upload"} fontSize={18} fontFamily={"bold"} />
+        </View>
+        <View />
+      </Row>
+    </>
   )
 }
 
 export default TopNav
 
 const Row = styled(View, {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal:10,
-    marginTop:Platform.OS="ios"?verticalScale(40):verticalScale(30)
+
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  paddingHorizontal: 10,
+
+  // marginTop:Platform.OS="ios"?verticalScale(40):verticalScale(30)r
+
 
 });
 

@@ -5,6 +5,7 @@ const icons = {
     eye:require('./eye.png'),
     heart:require('./heart.png'),
     upload:require('./upload.png'),
+    cross:require('./cross.png'),
 
 }
 export default icons;

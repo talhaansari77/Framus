@@ -17,10 +17,10 @@ const MainStack = () => {
         headerShown: false,
         tabBarShowLabel: false,
       })}
-      // initialRouteName="UploadImages"
+
     >
 
-     
+
       <Stack.Screen name="WelcomeCollection" component={WelcomeCollection} />
       <Stack.Screen name="MyCollection" component={MyCollection} />
       <Stack.Screen name="SelectScreen" component={SelectScreen} />

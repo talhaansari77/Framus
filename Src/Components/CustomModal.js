@@ -14,7 +14,7 @@ import {
     ScaledSheet,
     verticalScale,
   } from "react-native-size-matters";
-  import { colors } from "../utils/Colors";
+import { colors } from "../Utils/Colors";
 ;
  
 

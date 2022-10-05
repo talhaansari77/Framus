@@ -8,7 +8,7 @@ import TermAndCondition from './Molecules/TermAndCondition'
 import CustomButton from '../../../Components/CustomButton'
 import { verticalScale } from 'react-native-size-matters'
 
-const UploadImages = () => {
+const UploadImages = ({navigation}) => {
   return (
     <View style={{flex:1,}}>
         <TopNav/>
@@ -26,7 +26,7 @@ const UploadImages = () => {
         backgroundColor={colors.black}
         onPress={() => {
         //   onHandleSubmit();
-        //   navigation.navigate("MainStack",{screen:"WelcomeCollection"})
+          navigation.navigate("MainStack",{screen:"MyCollection"})
         }}
 
       />

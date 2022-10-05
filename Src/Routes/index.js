@@ -24,10 +24,12 @@ const RootNavigator = () => {
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
         screenOptions={{ headerShown: false }}
-        initialRouteName="MainStack"
+        // initialRouteName="MainStack"
       >
+
+        <Stack.Screen name="AuthStack" component={AuthStack} />
         <Stack.Screen name="MainStack" component={MainStack} />
-        {/* <Stack.Screen name="AuthStack" component={AuthStack} /> */}
+
 
       </Stack.Navigator>
       <StatusBar style="light" />

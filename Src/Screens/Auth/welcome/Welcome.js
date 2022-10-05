@@ -1,4 +1,4 @@
-import { View, Text, Image, ImageBackground, SafeAreaView } from "react-native";
+import { View, Text, Image, ImageBackground, SafeAreaView, Platform } from "react-native";
 import React, { useState, useEffect } from "react";
 import CustomText from "../../../Components/CustomText";
 import gallery from "../../../../Assets/Gallery";
@@ -22,13 +22,13 @@ const Welcome = ({ navigation }) => {
         />
 
         <BottomShadow>
-          <Spacer height={18} />
+          <Spacer height={Platform.OS=="ios"?18:5} />
           <View>
             <Image source={gallery.splashImage} />
           </View>
         </BottomShadow>
 
-        <Spacer height={40} />
+        <Spacer height={Platform.OS=="ios"?40:25} />
         <CustomText
           label={"AI Generated Art"}
           color={colors.darkBlack}
@@ -37,13 +37,13 @@ const Welcome = ({ navigation }) => {
         />
         <CustomText
           label={"Living in Your Home"}
-          marginTop={-8}
+          marginTop={Platform.OS=="ios"?-8:-14}
           color={colors.darkBlack}
           fontSize={"25"}
           fontFamily={"regular"}
         />
 
-        <Spacer height={30} />
+        <Spacer height={Platform.OS=="ios"?30:20} />
 
         <View
           style={{
@@ -52,9 +52,9 @@ const Welcome = ({ navigation }) => {
             shadowOpacity: 0.3,
             shadowRadius: 4,
             width: "100%",
-            alignItems:"center",
-            alignSelf:"center",
-            justifyContent:"center"
+            alignItems: "center",
+            alignSelf: "center",
+            justifyContent: "center"
             // elevation: 1
           }}
         >
@@ -102,17 +102,17 @@ const Welcome = ({ navigation }) => {
             <CustomText
               label="By continuing you agree to our"
               fontFamily={"light"}
-              fontWeight={"700"} 
+              fontWeight={"700"}
               fontSize={11}
               marginBottom={4}
             />
           </View>
 
-          <View style={{display:"flex", flexDirection:"row"}}>
+          <View style={{ display: "flex", flexDirection: "row" }}>
             <CustomText label="Terms " fontFamily={"semiBold"} fontSize={11} />
-            <CustomText label="& " fontFamily={"light"} fontSize={11}  />
-            <CustomText label="Privacy Policy" fontFamily={"semiBold"} fontSize={11}  />
-            
+            <CustomText label="& " fontFamily={"light"} fontSize={11} />
+            <CustomText label="Privacy Policy" fontFamily={"semiBold"} fontSize={11} />
+
           </View>
         </View>
       </Center>
@@ -138,6 +138,7 @@ const BottomShadow = styled(View, {
   shadowColor: "#100C3E",
   shadowOpacity: 0.4,
   shadowRadius: 10,
+  elevation:10
 });
 
 export default Welcome;

@@ -1,5 +1,14 @@
-import { View, Text, SafeAreaView, Image, FlatList } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  Dimensions,
+  Animated,
+} from "react-native";
+import React, { useState, useRef } from "react";
 import styled from "react-native-styled-components";
 import icons from "../../../../Assets/Icons";
 import gallery from "../../../../Assets/Gallery";
@@ -16,45 +25,47 @@ import {
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import MyCollectionGallery from "./molecules/MyCollectionGallery";
+import profile from "../../../../Assets/Profile";
+import Carousel from "react-native-snap-carousel-v4";
+
 // import { BlurView } from "@react-native-community/blur";
 
 const MyCollection = () => {
-  const dataImage = ["#333", "#FF6633", "#FFB399", "#FF3399", "#99FF99"];
-  // const dataImage = [
-  //   <Image
-  //     resizeMode={"cover"}
-  //     style={{ height: 220, width: "100%" }}
-  //     source={gallery.galleryMainImage04}
-  //     blurRadius={0}
-  //   />,
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollX = useRef(new Animated.Value(0)).current;
+  const sliderRef = useRef(null);
+  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+  const viewItemsChanged = useRef(({ viewableItems }) => {
+    setCurrentIndex(viewableItems[0].index);
+  }).current;
+  const dataImage = [gallery.galleryMainImage01, gallery.galleryMainImage02, gallery.galleryMainImage03,];
 
-  //   <Image
-  //     resizeMode={"cover"}
-  //     style={{ height: 220, width: "100%" }}
-  //     source={gallery.galleryMainImage04}
-  //     blurRadius={0}
-  //   />,
 
-  //   <Image
-  //     resizeMode={"cover"}
-  //     style={{ height: 220, width: "100%" }}
-  //     source={gallery.galleryMainImage04}
-  //     blurRadius={0}
-  //   />,
-  // ];
-
+  const scrollTo = (pointer) => {
+    if (currentIndex < dataImage.length - 1 && pointer === "right") {
+      console.log('right', currentIndex)
+      sliderRef.current.scrollToIndex({ index: currentIndex + 1 })
+    } else if (currentIndex > 0 && pointer === "left") {
+      console.log('left', currentIndex)
+      sliderRef.current.scrollToIndex({ index: currentIndex - 1 })
+    }
+    else {
+      console.log("The End", currentIndex);
+    }
+  }
   return (
     <Container>
-      <SafeAreaView>
-        <MyCollections>
-          <View
-            style={{ alignSelf: "center", paddingHorizontal: 8, marginTop: 7 }}
-          >
-            {/* <FontAwesome5
+      {/* <SafeAreaView> */}
+      <MyCollections>
+        <View
+          style={{ alignSelf: "center", paddingHorizontal: 8, marginTop: 7 }}
+        >
+          {/* <FontAwesome5
             name="bell"
             backgroundColor={colors.black}
             size={22}
           /> */}
+          <TouchableOpacity activeOpacity={0.6}>
             <View>
               <Image
                 source={icons.bellIcon}
@@ -62,104 +73,121 @@ const MyCollection = () => {
                 resizeMode={"contain"}
               />
             </View>
-
-            <IconNumber
-            >
-              <CustomText
-                label="12"
-                fontSize={8}
-                alignSelf={"center"}
-                fontFamily={"regular"}
-                color={colors.white}
-              />
-            </IconNumber>
-          </View>
-
-          <View>
+          </TouchableOpacity>
+          <IconNumber>
             <CustomText
-              label="My Collection"
-              fontFamily={"bold"}
-              fontSize={20}
-              color={colors.black}
+              label="12"
+              fontSize={8}
+              alignSelf={"center"}
+              fontFamily={"regular"}
+              color={colors.white}
             />
-          </View>
+          </IconNumber>
+        </View>
 
-          <View style={{ alignSelf: "center" }}>
+        <View>
+          <CustomText
+            label="My Collection"
+            fontFamily={"bold"}
+            fontSize={20}
+            color={colors.black}
+          />
+        </View>
+        <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" }}>
+          <View>
             <Image
               source={icons.settingIcon}
               style={{ height: 20, width: 35 }}
               resizeMode={"contain"}
-              marginBottom={4}
+              alignSelf={"center"}
+              marginBottom={8}
             />
           </View>
-        </MyCollections>
-      </SafeAreaView>
-      <View style={{ backgroundColor: "red", height: 230 }}>
+        </TouchableOpacity>
+      </MyCollections>
+      {/* </SafeAreaView> */}
+      <View style={{ height: 230, width: "100%", justifyContent: "center", alignItems: "center" }}>
+
         <FlatList
           data={dataImage}
           keyExtractor={(item) => String(item)}
+          scrollEventThrottle={32}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+            useNativeDriver: false
+          })}
+          onViewableItemsChanged={viewItemsChanged}
+          viewabilityConfig={viewConfig}
+          ref={sliderRef}
           horizontal
           showsHorizontalScrollIndicator={false}
-          snapToAlignment={"start"}
-          scrollEventThrottle={16}
+          // snapToAlignment={"start"}
+          // scrollEventThrottle={16}
+          bounces={false}
+          pagingEnabled
+
           renderItem={({ item }) => (
+            // <></>
             <View
               style={{
-                backgroundColor: item,
+                // width: "100%",
                 height: 220,
-                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                overflow: "hidden",
+                borderRadius: moderateScale(12),
+                // backgroundColor: item,
+                height: 230,
+                // width:"100%", 
+                width: 292,
                 marginHorizontal: 10,
                 borderRadius: 12,
               }}
-            />
+            >
+              <View style={{ position: "absolute", width: 152, zIndex: 1000 }}>
+                <Image
+                  // resizeMode={"contain"}
+                  style={{ height: 230, width: "100%" }}
+                  source={item}
+                  blurRadius={0}
+                />
+              </View>
+              <Image
+                source={item}
+                style={{ width: "130%", height: "100%" }}
+                resizeMode={"cover"}
+                blurRadius={6}
+              />
+            </View>
+
           )}
         />
       </View>
-
       <Spacer height={10} />
       <MyCollections>
-        <ArrowButton>
-          <Entypo name="chevron-small-left" size={27} />
-        </ArrowButton>
+        <TouchableOpacity
+          activeOpacity={0.6}
+          onPress={(() => scrollTo("left"))}
+        >
+          <ArrowButton>
+            <Entypo name="chevron-small-left" size={27} />
+          </ArrowButton>
+        </TouchableOpacity>
 
-        <View style={{ alignSelf: "center" }}>
-          <AntDesign name="hearto" size={27} />
-        </View>
+        <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" }}>
+          <View>
+            <AntDesign name="hearto" size={27} />
+          </View>
+        </TouchableOpacity>
 
-        <ArrowButton >
-          <Entypo name="chevron-small-right" size={27} />
-        </ArrowButton>
+        <TouchableOpacity activeOpacity={0.6}
+          onPress={(() => scrollTo("right"))}
+        >
+          <ArrowButton>
+            <Entypo name="chevron-small-right" size={27} />
+          </ArrowButton>
+        </TouchableOpacity>
       </MyCollections>
 
-      {/* <View> */}
-
-      {/* <View
-        style={{
-          width: "100%",
-          height: 220,
-          justifyContent: "center",
-          alignItems: "center",
-          overflow: "hidden",
-          borderRadius: moderateScale(12),
-        }}
-      >
-        <View style={{ position: "absolute", width: 152, zIndex: 1000 }}>
-          <Image
-            resizeMode={"cover"}
-            style={{ height: 220, width: "100%" }}
-            source={gallery.galleryMainImage04}
-            blurRadius={0}
-          />
-        </View>
-        <Image
-          source={gallery.galleryMainImage01}
-          style={{ width: "130%", height: "100%" }}
-          resizeMode={"cover"}
-          blurRadius={6}
-        />
-      </View> */}
-
-      {/* </View> */}
       <Spacer height={20} />
       <MyCollectionGallery />
     </Container>
