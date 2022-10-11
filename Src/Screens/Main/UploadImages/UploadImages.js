@@ -18,7 +18,6 @@ const UploadImages = ({navigation}) => {
 
         }}
         />
-
         <ImageContainer/>
         <TermAndCondition/>
         <View style={{alignItems:"center",marginHorizontal:15,marginTop:20}}>

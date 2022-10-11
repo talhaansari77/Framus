@@ -71,7 +71,7 @@ function CustomButton({
             alignSelf: alignSelf || "center",
             justifyContent: justifyContent || "center",
             marginTop,
-            shadowColor: shadowColor || "#adb5bd",
+            shadowColor: shadowColor || Platform.OS=="ios"? "#adb5bd":"black",
             shadowRadius: 8,
             elevation: 20,
             alignItems: "center",

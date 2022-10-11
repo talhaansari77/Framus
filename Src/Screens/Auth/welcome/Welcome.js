@@ -21,15 +21,12 @@ const Welcome = ({ navigation }) => {
           fontSize={45}
           color={colors.darkBlack}
         />
-
         <BottomShadow>
-
           <Spacer height={Platform.OS == "ios" ? 18 : 5} />
           <Image source={gallery.splashImage} style={{ zIndex: 10 }} />
-          {Platform.OS == "ios" ? <></> : <Shadow style={{ position: "absolute" }} distance={20} offset={[30, -220]}>
+          {Platform.OS == "ios" ? <></> : <Shadow style={{ position: "absolute" }} distance={20} offset={[5, -225]}>
             <Spacer height={200} width={230} />
           </Shadow>}
-
         </BottomShadow>
 
         <Spacer height={Platform.OS == "ios" ? 40 : 25} />
@@ -49,19 +46,7 @@ const Welcome = ({ navigation }) => {
 
         <Spacer height={Platform.OS == "ios" ? 30 : 20} />
 
-        {/* <View
-          style={{
-            shadowOffset: { width: 2, height: 3 },
-            shadowColor: "#100C3E",
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-            width: "100%",
-            alignItems: "center",
-            alignSelf: "center",
-            justifyContent: "center"
-            // elevation: 1
-          }}
-        > */}
+    
         <CustomButton
           title="Sign In"
           SelfAlign={"center"}
@@ -80,16 +65,7 @@ const Welcome = ({ navigation }) => {
 
         <Spacer height={10} />
 
-        {/* <View
-          style={{
-            shadowOffset: { width: 2, height: 3 },
-            shadowColor: "#100C3E",
-            shadowOpacity: 0.3,
-            shadowRadius: 4,
-            width: "100%",
-            // elevation: 1
-          }}
-        > */}
+    
         <CustomButton
           title="Sign Up"
           borderRadius={15}

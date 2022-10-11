@@ -13,8 +13,6 @@ const ImageContainer = () => {
   const [isOn, setisOn] = useState(true);
   const [image, setImage] = useState('');
 
-  //   const toggleSwitch = () => setisOn((previousState) => !previousState);
-
   return (
     <View style={styles.mainContainer}>
       <View style={styles.imgContainer}>
@@ -146,7 +144,7 @@ const styles = ScaledSheet.create({
     paddingLeft:20,
     paddingRight:15,
     paddingBottom:10,
-    paddingTop:Platform.OS=="ios"? 20:0
+    paddingTop:Platform.OS=="ios"? 5:0
 
     //   padding:10
   },
