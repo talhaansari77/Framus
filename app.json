@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./Assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.zaidanwar.Framus"
     },
     "web": {
       "favicon": "./Assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "54ee3b3a-9c35-4925-a698-756357a10015"
+      }
     }
   }
 }
