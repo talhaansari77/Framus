@@ -42,8 +42,9 @@ const SelectScreen = ({navigation}) => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <ImageContainer>
                     {num.map((item, index) => (
-                        <TouchableOpacity activeOpacity={0.7} style={{ width: Platform.OS=="ios"?  Dimensions.get('window').width /   3:Dimensions.get('window').width /   3.04, height: 138, marginBottom: 1,}}>
+                        <TouchableOpacity activeOpacity={0.7} style={{ width: Platform.OS=="ios"?  Dimensions.get('window').width /   3:Dimensions.get('window').width /   3, height: verticalScale(13), marginBottom: 1,}}>
                             <Image source={item} 
+                            resizeMode="cover"
                             style={{ width: "100%", height: '100%' }}  />
                         </TouchableOpacity>
                     ))}

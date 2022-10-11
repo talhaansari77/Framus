@@ -54,7 +54,7 @@ const TermAndCondition = () => {
         <View
           style={{
             marginTop: verticalScale(13),
-            marginLeft: Platform.OS == "ios" ? verticalScale(-60) : verticalScale(-100)
+            marginLeft: Platform.OS == "ios" ? verticalScale(-60) : verticalScale(-75)
           }}
         >
           <CustomText

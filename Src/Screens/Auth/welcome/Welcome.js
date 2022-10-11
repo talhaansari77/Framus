@@ -21,15 +21,12 @@ const Welcome = ({ navigation }) => {
           fontSize={45}
           color={colors.darkBlack}
         />
-
         <BottomShadow>
-
           <Spacer height={Platform.OS == "ios" ? 18 : 5} />
           <Image source={gallery.splashImage} style={{ zIndex: 10 }} />
-          {Platform.OS == "ios" ? <></> : <Shadow style={{ position: "absolute" }} distance={20} offset={[30, -220]}>
+          {Platform.OS == "ios" ? <></> : <Shadow style={{ position: "absolute" }} distance={20} offset={[5, -225]}>
             <Spacer height={200} width={230} />
           </Shadow>}
-
         </BottomShadow>
 
         <Spacer height={Platform.OS == "ios" ? 40 : 25} />

@@ -64,16 +64,7 @@ const WelcomeCollection = ({ navigation }) => {
         </View>
 
         <Spacer height={60} />
-        <View
-          style={{
-            shadowOffset: { width: 4, height: 5 },
-            shadowColor: "#100C3E",
-            shadowOpacity: 0.3,
-            shadowRadius: 5,
-            width: "100%",
-            // elevation: 1
-          }}
-        >
+       
           <CustomButton
             title="Add Your Artwork"
             borderRadius={15}
@@ -83,7 +74,6 @@ const WelcomeCollection = ({ navigation }) => {
             sw={1.6}
             onPress={() => navigation.navigate("MyCollection")}
           />
-        </View>
       </Container1>
     </Container>
   );
