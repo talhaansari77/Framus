@@ -226,7 +226,7 @@ const IconNumber = styled(View, {
   paddingTop: 1,
 });
 
-const ArrowButton = styled(View, {
+const ArrowButton = styled(TouchableOpacity, {
   borderRadius: 10,
   padding: 13,
   alignItems: "center",
