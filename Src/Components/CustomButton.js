@@ -49,6 +49,7 @@ function CustomButton({
   offsetX,
   offsetY,
   sw,
+  shadowOpacity,
   ...props
 }) {
   return (
@@ -59,7 +60,7 @@ function CustomButton({
         activeOpacity={0.6}
         style={[
           {
-            backgroundColor: backgroundColor || colors.primary,
+            backgroundColor: backgroundColor ,
             // backgroundGradient: <LinearGradient colors={["#8E59E2", "#f3f3f3"]} />,
             width: width || "100%",
             height: height,
@@ -76,7 +77,7 @@ function CustomButton({
             elevation: 20,
             alignItems: "center",
             justifyContent: "center",
-            shadowOpacity: 1,
+            shadowOpacity: shadowOpacity || 1,
 
             shadowOffset: { width: 3, height: 3 },
             marginBottom: marginBottom,

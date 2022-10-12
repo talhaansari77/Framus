@@ -6,7 +6,10 @@ import WelcomeCollection from "../../Screens/Main/MyCollection/WelcomeCollection
 import MyCollection from "../../Screens/Main/MyCollection/MyCollection";
 import SelectScreen from "../../Screens/Main/SelectScreen";
 import UploadImages from "../../Screens/Main/UploadImages";
-
+import Notifications from "../../Screens/Main/Notifications/Notifications";
+import ArtSetting from "../../Screens/Main/ArtSetting/ArtSetting";
+import SettingScreen from "../../Screens/Main/Settings/SettingScreen";
+import DisplayTimer from "../../Screens/Main/DisplayTimer/DisplayTimer";
 
 
 const MainStack = () => {
@@ -17,20 +20,17 @@ const MainStack = () => {
         headerShown: false,
         tabBarShowLabel: false,
       })}
-
     >
-
-
+      <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="DisplayTimer" component={DisplayTimer} />
+      <Stack.Screen name="SettingScreen" component={SettingScreen} />
+      <Stack.Screen name="ArtSetting" component={ArtSetting} />
+      <Stack.Screen name="SelectScreen" component={SelectScreen} />
       <Stack.Screen name="WelcomeCollection" component={WelcomeCollection} />
       <Stack.Screen name="MyCollection" component={MyCollection} />
-      <Stack.Screen name="SelectScreen" component={SelectScreen} />
       <Stack.Screen name="UploadImages" component={UploadImages} />
-
-
     </Stack.Navigator>
   );
 };
 
 export default MainStack;
-
-
