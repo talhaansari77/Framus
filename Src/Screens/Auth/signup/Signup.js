@@ -21,17 +21,19 @@ import icons from "../../../../Assets/Icons";
 import * as ImagePicker from "expo-image-picker";
 import commonStyles from "../../../Utils/CommonStyles";
 import { Shadow } from "react-native-shadow-2";
+import SignupHeader from "./molecules/SignupHeader";
 
-const Signup = ({ navigation }) => {
+const Signup = ({ navigation, route }) => {
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
-  
 
   const [submitError, setSubmitError] = useState({
     userNameError: "",
     firstNameError: "",
+    emailError: "",
     lastNameError: "",
     nameListError: "",
   });
@@ -39,6 +41,7 @@ const Signup = ({ navigation }) => {
     userName: userName,
     firstName: firstName,
     lastName: lastName,
+    email: email,
   };
 
   const nameList = [
@@ -80,15 +83,16 @@ const Signup = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={{ flex: 1,}}>
+    <ScrollView style={{ flex: 1 }}>
       <Container>
-        <Spacer height={Platform.OS == "ios" ? 60 : 30} />
-        <CustomText
+        <Spacer height={Platform.OS == "ios" ? 40 : 30} />
+        <SignupHeader fromSetting={route?.params?.fromSetting} />
+        {/* <CustomText
           label="Profile"
           fontFamily={"bold"}
           fontSize={25}
           alignSelf={"center"}
-        />
+        /> */}
         <View
           style={{
             justifyContent: "center",
@@ -96,24 +100,36 @@ const Signup = ({ navigation }) => {
             width: "100%",
           }}
         >
-          <TouchableOpacity 
+          <TouchableOpacity
             activeOpacity={0.6}
-            onPress={()=>{
-              OpenImageLib()
-  
+            onPress={() => {
+              OpenImageLib();
             }}
-          style={ image? styles.mainImg:{width:220,height:220,alignItems:"center",justifyContent:"center",margin:30,borderRadius:100}}>
+            style={
+              image
+                ? styles.mainImg
+                : {
+                    width: 220,
+                    height: 220,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    margin: 30,
+                    borderRadius: 100,
+                  }
+            }
+          >
+            {/* <View style={styles.imgContainer}> */}
 
-          {/* <View style={styles.imgContainer}> */}
-
-
-          <Image
-              source={image ? { uri: image ? image : "" } : profile.profilePhotoUpload}
+            <Image
+              source={
+                image ? { uri: image ? image : "" } : profile.profilePhotoUpload
+              }
               resizeMode="cover"
               // style={commonStyles.img}
             />
-            </TouchableOpacity>
-
+          </TouchableOpacity>
+          {route?.params?.fromSetting ? (<CustomText fontFamily={"bold"} label={"Change Photo"} />) : (null)}
+          
 
           {/* <TouchableOpacity 
           activeOpacity={0.6}
@@ -131,7 +147,6 @@ const Signup = ({ navigation }) => {
           </TouchableOpacity> */}
           {/* </View> */}
 
-
           {/* <View style={styles.txtContainer}>
             <CustomText
               label="Upload"
@@ -143,64 +158,120 @@ const Signup = ({ navigation }) => {
           </View> */}
         </View>
 
-
         {/* <Spacer height={10} /> */}
 
-        <CustomText placeholder="hellloo" height={60} />
-        <CustomTextInput
-          placeholder="Username"
-          height={60}
-          placeholderTextColor={colors.lightGray}
-          borderRadius={10}
-          fontFamily={"regular"}
-          backgroundColor={colors.white}
-          color={colors.black}
-          value={userName}
-          onChangeText={(nam) => {
-            setUserName(nam),
-              setSubmitError({ ...submitError, userNameError: "" });
-          }}
-          error={submitError.userNameError}
-          // onChangeText={(txt) => {
-          //   let data =SearchLists.filter((item) => item.name.includes(txt)?item:'');
-          //   setFilerList(data);
-          //   console.log(data);
-          // }}
-        />
-        <CustomTextInput
-          placeholder="First Name"
-          height={60}
-          placeholderTextColor={colors.lightGray}
-          borderRadius={10}
-          fontFamily={"regular"}
-          backgroundColor={colors.white}
-          color={colors.black}
-          marginTop={20}
-          value={firstName}
-          onChangeText={(firstnam) => {
-            setFirstName(firstnam),
-              setSubmitError({ ...submitError, firstNameError: "" });
-          }}
-          error={submitError.firstNameError}
-        />
-        <CustomTextInput
-          placeholder="Last Name"
-          height={60}
-          placeholderTextColor={colors.lightGray}
-          borderRadius={10}
-          fontFamily={"regular"}
-          backgroundColor={colors.white}
-          color={colors.black}
-          marginTop={20}
-          value={lastName}
-          onChangeText={(lastnam) => {
-            setLastName(lastnam),
-              setSubmitError({ ...submitError, lastNameError: "" });
-          }}
-          error={submitError.lastNameError}
-        />
+        <CustomText placeholder="hellloo" height={40} />
+        <FormContainer marginTop={submitError.firstNameError ? 100 : 20}>
+          <CustomText
+            label={"Username"}
+            fontFamily={"regular"}
+            color={"grey"}
+            marginLeft={8}
+            fontSize={9}
+          />
+          <CustomTextInput
+            placeholder="LawdHamMercy"
+            height={30}
+            placeholderTextColor={colors.lightGray}
+            borderRadius={10}
+            fontFamily={"regular"}
+            // backgroundColor={colors.black}
+            color={colors.black}
+            value={userName}
+            onChangeText={(nam) => {
+              setUserName(nam),
+                setSubmitError({ ...submitError, userNameError: "" });
+            }}
+            error={submitError.userNameError}
+            // onChangeText={(txt) => {
+            //   let data =SearchLists.filter((item) => item.name.includes(txt)?item:'');
+            //   setFilerList(data);
+            //   console.log(data);
+            // }}
+          />
+        </FormContainer>
 
-        <Spacer height={30} />
+        <FormContainer>
+          <CustomText
+            label={"Email"}
+            fontFamily={"regular"}
+            color={"grey"}
+            marginLeft={8}
+            fontSize={9}
+          />
+          <CustomTextInput
+            placeholder="christophermontgomery@gmail.com"
+            height={30}
+            placeholderTextColor={colors.lightGray}
+            borderRadius={10}
+            fontFamily={"regular"}
+            // backgroundColor={colors.black}
+            color={colors.black}
+            value={email}
+            onChangeText={(eml) => {
+              setUserName(eml),
+                setSubmitError({ ...submitError, emailError: "" });
+            }}
+            error={submitError.emailError}
+            // onChangeText={(txt) => {
+            //   let data =SearchLists.filter((item) => item.name.includes(txt)?item:'');
+            //   setFilerList(data);
+            //   console.log(data);
+            // }}
+          />
+        </FormContainer>
+
+        <FormContainer>
+          <CustomText
+            label={"First name"}
+            fontFamily={"regular"}
+            color={"grey"}
+            marginLeft={8}
+            fontSize={9}
+          />
+          <CustomTextInput
+            placeholder="Christopher@gmail.com"
+            height={30}
+            placeholderTextColor={colors.lightGray}
+            borderRadius={10}
+            fontFamily={"regular"}
+            // backgroundColor={colors.black}
+            color={colors.black}
+            value={firstName}
+            onChangeText={(firstnam) => {
+              setFirstName(firstnam),
+                setSubmitError({ ...submitError, firstNameError: "" });
+            }}
+            error={submitError.firstNameError}
+          />
+        </FormContainer>
+
+        <FormContainer>
+          <CustomText
+            label={"Last name"}
+            fontFamily={"regular"}
+            color={"grey"}
+            marginLeft={8}
+            fontSize={9}
+          />
+          <CustomTextInput
+            placeholder="Montgomery"
+            height={25}
+            placeholderTextColor={colors.lightGray}
+            borderRadius={10}
+            fontFamily={"regular"}
+            // backgroundColor={colors.black}
+            color={colors.black}
+            value={lastName}
+            onChangeText={(lastnam) => {
+              setLastName(lastnam),
+                setSubmitError({ ...submitError, lastNameError: "" });
+            }}
+            error={submitError.lastNameError}
+          />
+        </FormContainer>
+
+        <Spacer height={20} />
 
         <View
           style={{
@@ -211,7 +282,7 @@ const Signup = ({ navigation }) => {
           }}
         >
           <CustomButton
-            title="Create Profile"
+            title= {route?.params?.fromSetting ? ("Save"): ("Create Profile")} 
             borderRadius={15}
             height={60}
             fontFamily={"bold"}
@@ -247,6 +318,17 @@ const Container = styled(View, {
   // backgroundColor: "red",
 });
 
+const FormContainer = styled(View, props => ( {
+  width: "100%",
+  height: verticalScale(45),
+  backgroundColor: colors.white,
+  borderRadius: 10,
+  alignSelf: "center",
+  padding: 10,
+  marginTop: props.marginTop ,
+
+  }));
+
 const styles = ScaledSheet.create({
   imgContainer: {
     width: "100%",
@@ -265,9 +347,9 @@ const styles = ScaledSheet.create({
     // width: "100%",
     // height: "100%",
     borderRadius: 200,
-    margin:10,
-    backgroundColor:"red"
-    
+    margin: 10,
+    backgroundColor: "red",
+
     // elevation:100,
   },
   txtContainer: {
@@ -276,8 +358,7 @@ const styles = ScaledSheet.create({
     zIndex: 11,
     // elevation:11,
   },
-  mainImg:{
-
+  mainImg: {
     width: 220,
     height: 220,
     backgroundColor: "#E7E8EB",
@@ -290,8 +371,7 @@ const styles = ScaledSheet.create({
     shadowOpacity: 1,
     shadowOffset: { width: -5, height: -4 },
     margin: 30,
-
-  }
+  },
 });
 
 export default Signup;

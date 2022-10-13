@@ -23,7 +23,11 @@ const SettingBody = () => {
       icon: icons.account,
       name: "My Account",
       rightArrow: icons.rightArrow,
-      onPress: () => navigation.navigate("Settings"),
+      onPress: () =>
+        navigation.navigate("AuthStack", {
+          screen: "Signup",
+          params: { fromSetting: true },
+        }),
     },
     {
       id: 3,
@@ -49,7 +53,7 @@ const SettingBody = () => {
   ];
   return (
     <View>
-        <Spacer height={verticalScale(20)}/>
+      <Spacer height={verticalScale(20)} />
       {settingArray.map((item, index) => (
         <TouchableOpacity onPress={item.onPress} key={index}>
           <MapBody>

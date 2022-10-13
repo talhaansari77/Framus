@@ -1,11 +1,18 @@
 import moment from "moment";
 import Toast from "react-native-root-toast";
 
-export const EditValidate = (data, submitError, setSubmitError, nameList) => {
+export const EditValidate = (data, submitError, setSubmitError, nameList, emailError) => {
   if (!data.userName) {
     return setSubmitError({
       ...submitError,
       userNameError: "User Name is required",
+    });
+  }
+
+  if (!data.email) {
+    return setSubmitError({
+      ...submitError,
+      emailError: "Eamil is required",
     });
   }
 

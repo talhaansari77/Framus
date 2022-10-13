@@ -21,9 +21,9 @@ const MainStack = () => {
         tabBarShowLabel: false,
       })}
     >
+      <Stack.Screen name="SettingScreen" component={SettingScreen} />
       <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="DisplayTimer" component={DisplayTimer} />
-      <Stack.Screen name="SettingScreen" component={SettingScreen} />
       <Stack.Screen name="ArtSetting" component={ArtSetting} />
       <Stack.Screen name="SelectScreen" component={SelectScreen} />
       <Stack.Screen name="WelcomeCollection" component={WelcomeCollection} />
