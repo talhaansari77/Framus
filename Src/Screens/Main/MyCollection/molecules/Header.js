@@ -5,11 +5,12 @@ import CustomText from "../../../../Components/CustomText";
 import icons from "../../../../../Assets/Icons";
 import { verticalScale } from "react-native-size-matters";
 
-const Header = () => {
+const Header = ({onNotification,onSetting}) => {
   return (
     
       <View style={styles.header}>
            <TouchableOpacity
+           onPress={onSetting}
           activeOpacity={0.6}
           style={{ alignSelf: "center",}}
         >
@@ -31,7 +32,9 @@ const Header = () => {
           />
        
 
-        <TouchableOpacity activeOpacity={0.6}>
+        <TouchableOpacity
+        onPress={onNotification}
+         activeOpacity={0.6}>
           <Image
             source={icons.bellIcon}
             style={{ height: 23, }}

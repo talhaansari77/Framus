@@ -62,7 +62,18 @@ const MyCollection = ({ navigation }) => {
         paddingTop: Platform.OS == "ios" ? verticalScale(40) : 0,
       }}
     >
-      <Header />
+      <Header 
+      onSetting={()=>{
+        navigation.navigate("SettingScreen")
+
+        
+      }}
+      onNotification={()=>{
+        navigation.navigate("Notifications")
+        
+
+      }}
+       />
       <ScrollView style={{ height: "100%" }}>
         <View style={styles.headerContainer}>
           <Carousel

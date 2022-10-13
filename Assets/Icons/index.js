@@ -21,6 +21,17 @@ const icons = {
     cinema:require('./cinemaMode.png'),
     dot:require('./dot.png'),
     collectiontree:require('./collectiontree.png'),
+    celebrate:require('./celebrate.png'),
+    glass:require('./glass.png'),
+    emojie:require('./emojie.png'),
+    tick:require('./tick.png'),
+    store:require('./store.png'),
+    art:require('./art.png'),
+    clock:require('./clock.png'),
+    headset:require('./headset.png'),
+    account:require('./account.png'),
+    rightArrow:require('./rightArrow.png'),
+
 
 
 
