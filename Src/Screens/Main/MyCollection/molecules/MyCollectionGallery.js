@@ -23,15 +23,21 @@ import { useNavigation } from "@react-navigation/native";
 const MyCollectionGallery = () => {
   const navigation = useNavigation();
   const num = [
-    gallery.gallery02,
-    gallery.gallery03,
-    gallery.gallery01,
-    gallery.gallery03,
-    gallery.gallery02,
-    gallery.gallery03,
-    gallery.gallery02,
-    gallery.gallery03,
-    gallery.gallery01,
+    { id: 1, heart: "4", seen: "26", img: gallery.gallery1 },
+    { id: 2, heart: "3", seen: "26", img: gallery.gallery2 },
+    { id: 3, heart: "4", seen: "26", img: gallery.gallery3 },
+    { id: 4, heart: "5", seen: "26", img: gallery.gallery4 },
+    { id: 5, heart: "2", seen: "26", img: gallery.gallery5 },
+    { id: 6, heart: "6", seen: "26", img: gallery.gallery6 },
+    { id: 7, heart: "7", seen: "26", img: gallery.gallery7 },
+    { id: 8, heart: "8", seen: "26", img: gallery.gallery8 },
+    { id: 9, heart: "9", seen: "26", img: gallery.gallery9 },
+    { id: 10, heart: "10", seen: "26", img: gallery.gallery10 },
+    { id: 8, heart: "11", seen: "26", img: gallery.gallery11 },
+    { id: 8, heart: "12", seen: "26", img: gallery.gallery12 },
+    { id: 8, heart: "13", seen: "26", img: gallery.gallery13 },
+    { id: 8, heart: "14", seen: "26", img: gallery.gallery1 },
+    { id: 8, heart: "15", seen: "26", img: gallery.gallery2 },
   ];
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -48,13 +54,13 @@ const MyCollectionGallery = () => {
               navigation.navigate("SelectScreen");
             }}
             style={{
-              width: Dimensions.get("window").width / 3.9,
-              height: Platform.OS == "ios" ? 110 : 100,
-              marginBottom: verticalScale(10),
+              width: Dimensions.get("window").width / 3.4,
+              height: Platform.OS == "ios" ? 125 : 100,
+              marginBottom: verticalScale(9),
             }}
           >
             <Image
-              source={item}
+              source={item.img}
               style={{ width: "100%", height: "100%", borderRadius: 12 }}
             />
 
@@ -87,7 +93,7 @@ const MyCollectionGallery = () => {
                   style={{ width: 13, height: 9, marginTop: 2 }}
                 />
                 <CustomText
-                  label="3,124,244"
+                  label={item.seen}
                   marginLeft={4}
                   alignSelf={"center"}
                   fontSize={7}
@@ -95,14 +101,21 @@ const MyCollectionGallery = () => {
                   fontFamily={"semiBold"}
                 />
               </View>
-              <View style={{ flexDirection: "row" }}>
+              <View
+                style={{ flexDirection: "row", marginTop: verticalScale(3) }}
+              >
                 <Image
                   source={icons.heart}
-                  style={{ width: 12, height: 10, marginTop: 2 }}
+                  style={{
+                    width: 12,
+                    height: 10,
+                    marginTop: 2,
+                    tintColor: colors.white,
+                  }}
                 />
 
                 <CustomText
-                  label="2,412,444"
+                  label={item.heart}
                   marginLeft={4}
                   alignSelf={"center"}
                   fontSize={7}
@@ -118,14 +131,14 @@ const MyCollectionGallery = () => {
       {/* <Spacer height={Platform.OS == "ios" ? 10 : null} /> */}
       {/* <Spacer height={10}  /> */}
       {/* navigation.navigate("UploadImages") */}
-      <TouchableOpacity 
+      {/* <TouchableOpacity 
       style={{marginTop: Platform.OS=="ios"? 5:0}}
       onPress={() =>
          navigation.navigate("UploadImages")}>
         <View style={{ display: "flex", alignSelf: "center" }}>
           <Image source={icons.upload} style={{ height: 80, width: 80 }} />
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <Modal
         animationType="slide"

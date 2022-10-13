@@ -6,6 +6,7 @@ import WelcomeCollection from "../../Screens/Main/MyCollection/WelcomeCollection
 import MyCollection from "../../Screens/Main/MyCollection/MyCollection";
 import SelectScreen from "../../Screens/Main/SelectScreen";
 import UploadImages from "../../Screens/Main/UploadImages";
+import PlayMusic from "../../Screens/Main/PlayMusic/PlayMusic";
 
 
 
@@ -25,6 +26,8 @@ const MainStack = () => {
       <Stack.Screen name="MyCollection" component={MyCollection} />
       <Stack.Screen name="SelectScreen" component={SelectScreen} />
       <Stack.Screen name="UploadImages" component={UploadImages} />
+      <Stack.Screen name="PlayMusic" component={PlayMusic} />
+
 
 
     </Stack.Navigator>

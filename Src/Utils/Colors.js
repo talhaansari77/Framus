@@ -24,6 +24,7 @@ export const colors = {
   blue: "blue",
   switchGray: "#E2E2E2",
   halfGray: "#9F9F9F",
+  collectionBlack:"#34343A"
   // halfGray:"  #EBEBF5"
   // lightBlack:"#707070",
 

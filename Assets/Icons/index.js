@@ -9,6 +9,18 @@ const icons = {
     profile:require('./profile.png'),
     next:require('./next.png'),
     next1:require('./next1.png'),
+    on:require('./onBtn.png'),
+    next:require('./nextBtn.png'),
+    group:require('./Group.png'),
+    unGroup:require('./unGroup.png'),
+    collectionText:require('./CollectionText.png'),
+    playCross:require('./playMusciCross.png'),
+
+
+    zoom:require('./zoom.png'),
+    cinema:require('./cinemaMode.png'),
+    dot:require('./dot.png'),
+    collectiontree:require('./collectiontree.png'),
 
 
 

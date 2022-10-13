@@ -28,13 +28,15 @@ const SelectScreen = ({navigation}) => {
             <View  style={{width:"50%"}}>
                 <CustomText label={"Select Image"} fontSize={18} fontFamily={"bold"} />
             </View>
-            <View></View>
+            <View>
+
+            </View>
         </Row>
     )
 
     return (
         <Container>
-            <Spacer height={30} />
+            <Spacer height={40} />
             {/* <PH25> */}
             <TopNav />
             {/* </PH25> */}
@@ -42,7 +44,7 @@ const SelectScreen = ({navigation}) => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <ImageContainer>
                     {num.map((item, index) => (
-                        <TouchableOpacity activeOpacity={0.7} style={{ width: Platform.OS=="ios"?  Dimensions.get('window').width /   3:Dimensions.get('window').width /   3, height: verticalScale(13), marginBottom: 1,}}>
+                        <TouchableOpacity activeOpacity={0.7} style={{ width: Platform.OS=="ios"?  Dimensions.get('window').width /   3:Dimensions.get('window').width /   3, height: verticalScale(100), marginBottom: 1,}}>
                             <Image source={item} 
                             resizeMode="cover"
                             style={{ width: "100%", height: '100%' }}  />
