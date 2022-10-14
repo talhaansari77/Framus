@@ -12,6 +12,8 @@ const TopNav = ({onPress}) => {
 
     <>
       <Spacer height={Platform.OS == "ios" ? 40 : 30} />
+
+         
       <Row>
         <TouchableOpacity 
         activeOpacity={0.6}
@@ -19,7 +21,7 @@ const TopNav = ({onPress}) => {
         >
           <Feather name='chevron-left' size={verticalScale(25)} />
         </TouchableOpacity>
-        <View >
+        <View  style={{width:"30%"}}>
           <CustomText label={"Upload"} fontSize={18} fontFamily={"bold"} />
         </View>
         <View />

@@ -21,11 +21,21 @@ import CustomButton from "../../../../Components/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 
 const MyCollectionGallery = () => {
-  const navigation=useNavigation();
-  const num = [gallery.gallery02,gallery.gallery03,gallery.gallery01,gallery.gallery03,gallery.gallery02,gallery.gallery03,gallery.gallery02,gallery.gallery03,gallery.gallery01];
+  const navigation = useNavigation();
+  const num = [
+    gallery.gallery02,
+    gallery.gallery03,
+    gallery.gallery01,
+    gallery.gallery03,
+    gallery.gallery02,
+    gallery.gallery03,
+    gallery.gallery02,
+    gallery.gallery03,
+    gallery.gallery01,
+  ];
 
   const [modalVisible, setModalVisible] = useState(false);
-  
+
   return (
     <View>
       <Spacer height={Platform.OS == "ios" ? 8 : null} />
@@ -34,14 +44,13 @@ const MyCollectionGallery = () => {
           //   <View>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={()=>{
-              navigation.navigate("SelectScreen")
-
+            onPress={() => {
+              navigation.navigate("SelectScreen");
             }}
             style={{
               width: Dimensions.get("window").width / 3.9,
-              height: Platform.OS=="ios"?110:100,
-              marginBottom: 10,
+              height: Platform.OS == "ios" ? 110 : 100,
+              marginBottom: verticalScale(10),
             }}
           >
             <Image
@@ -63,19 +72,20 @@ const MyCollectionGallery = () => {
               </TouchableOpacity>
             </View>
 
-          
-
             <View
               style={{
                 position: "absolute",
                 zIndex: 1,
-              
+
                 bottom: 10,
                 left: 9,
               }}
             >
-              <View style={{  flexDirection: "row"}}>
-                <Image source={icons.eye} style={{ width: 13, height: 9, marginTop:2 }} />
+              <View style={{ flexDirection: "row" }}>
+                <Image
+                  source={icons.eye}
+                  style={{ width: 13, height: 9, marginTop: 2 }}
+                />
                 <CustomText
                   label="3,124,244"
                   marginLeft={4}
@@ -85,8 +95,11 @@ const MyCollectionGallery = () => {
                   fontFamily={"semiBold"}
                 />
               </View>
-              <View style={{  flexDirection: "row"}}>
-                <Image source={icons.heart} style={{ width: 12, height: 10, marginTop:2 }} />
+              <View style={{ flexDirection: "row" }}>
+                <Image
+                  source={icons.heart}
+                  style={{ width: 12, height: 10, marginTop: 2 }}
+                />
 
                 <CustomText
                   label="2,412,444"
@@ -102,14 +115,17 @@ const MyCollectionGallery = () => {
           //   {/* </View> */}
         ))}
       </ImageContainer>
-      <Spacer height={Platform.OS == "ios" ? 10 : null} />
+      {/* <Spacer height={Platform.OS == "ios" ? 10 : null} /> */}
       {/* <Spacer height={10}  /> */}
       {/* navigation.navigate("UploadImages") */}
-      <TouchableOpacity onPress={() => navigation.navigate("UploadImages")}>
-      <View style={{ display: "flex", alignSelf: "center" }}>
-        <Image source={icons.upload} style={{ height: 80, width: 80 }} />
-      </View>
-      </TouchableOpacity>  
+      <TouchableOpacity 
+      style={{marginTop: Platform.OS=="ios"? 5:0}}
+      onPress={() =>
+         navigation.navigate("UploadImages")}>
+        <View style={{ display: "flex", alignSelf: "center" }}>
+          <Image source={icons.upload} style={{ height: 80, width: 80 }} />
+        </View>
+      </TouchableOpacity>
 
       <Modal
         animationType="slide"
@@ -156,37 +172,16 @@ const MyCollectionGallery = () => {
           />
           <Spacer height={verticalScale(20)} />
 
-          {/* <View
-            style={{
-              shadowOffset: { width: 5, height: 3 },
-              shadowColor: "#100C3E",
-              shadowOpacity: 0.5,
-              shadowRadius: 5,
-              width: "100%",
-              alignItems: "center",
-              alignSelf: "center",
-              justifyContent: "center",
-              // elevation: 1
-            }}
-          > */}
-            <CustomButton
-              //   onPress={() =>
-              //     onSavePersonality()
-              //     }
+          <CustomButton
+            title="Yes, Delete Image"
+            fontSize={16}
+            borderRadius={17}
+            height={55}
+            backgroundColor={colors.black}
+          />
 
-              title="Yes, Delete Image"
-              fontSize={16}
-              borderRadius={17}
-              height={55}
-              backgroundColor={colors.black}
-
-              // paddingHorizontal={50}
-            />
-          {/* </View> */}
-          {/* <Spacer height={verticalScale(6)} /> */}
           <CustomText
-                      onPress={() => setModalVisible(!modalVisible)}
-
+            onPress={() => setModalVisible(!modalVisible)}
             label="No, Go Back"
             fontFamily={"bold"}
             fontSize={"12"}
@@ -195,31 +190,11 @@ const MyCollectionGallery = () => {
             align="center"
             textAlign="center"
           />
-
-          {/* <CustomButton
-            onPress={() => setModalVisible(!modalVisible)}
-            title="No, Go Back"
-            color={colors.black}
-            backgroundColor={colors.white}
-            borderColor={colors.black}
-            fontSize={15}
-            borderWidth={0}
-          /> */}
-          {/* </View>
-            </View> */}
         </View>
       </Modal>
     </View>
   );
 };
-
-// const Container = styled(View, {
-//   display: "flex",
-//   width: "100%",
-//   flex: 1,
-//   backgroundColor: "#f3f3f3",
-//   // backgroundColor: "red",
-// });
 
 const ImageContainer = styled(View, {
   display: "flex",

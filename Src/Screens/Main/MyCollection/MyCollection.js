@@ -8,6 +8,7 @@ import {
   Dimensions,
   Animated,
   Platform,
+  ScrollView
 } from "react-native";
 import React, { useState, useRef } from "react";
 import styled from "react-native-styled-components";
@@ -28,9 +29,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import MyCollectionGallery from "./molecules/MyCollectionGallery";
 import profile from "../../../../Assets/Profile";
 import Carousel from "react-native-snap-carousel-v4";
-
-// import { BlurView } from "@react-native-community/blur";
-
+import commonStyles from "../../../Utils/CommonStyles";
 const MyCollection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -57,17 +56,13 @@ const MyCollection = () => {
     }
   };
   return (
+    <ScrollView>
+
     <Container>
-      {/* <SafeAreaView> */}
       <MyCollections>
         <View
-          style={{ alignSelf: "center", paddingHorizontal: 5, marginTop: 7 }}
+          style={{ alignSelf: "center", paddingHorizontal: 5, marginTop: 10 }}
         >
-          {/* <FontAwesome5
-            name="bell"
-            backgroundColor={colors.black}
-            size={22}
-          /> */}
           <TouchableOpacity activeOpacity={0.6}>
             <View>
               <Image
@@ -114,7 +109,7 @@ const MyCollection = () => {
       {/* </SafeAreaView> */}
       <View
         style={{
-          height: 230,
+          height: 220,
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
@@ -135,8 +130,6 @@ const MyCollection = () => {
           ref={sliderRef}
           horizontal
           showsHorizontalScrollIndicator={false}
-          // snapToAlignment={"start"}
-          // scrollEventThrottle={16}
           bounces={false}
           pagingEnabled
           renderItem={({ item }) => (
@@ -150,9 +143,8 @@ const MyCollection = () => {
                 overflow: "hidden",
                 borderRadius: moderateScale(12),
                 // backgroundColor: item,
-                height: 230,
                 // width:"100%",
-                width: Platform.OS == "ios" ? moderateScale(320) : 330,
+                width: Platform.OS == "ios" ? moderateScale(320) : moderateScale(330),
                 marginHorizontal: 5,
                 borderRadius: 12,
               }}
@@ -175,27 +167,43 @@ const MyCollection = () => {
           )}
         />
       </View>
-      <Spacer height={10} />
-      <MyCollections>
-        <BtnRow>
-          <ArrowButton activeOpacity={0.8} onPress={() => scrollTo("left")}>
-            <Entypo name="chevron-small-left" size={27} />
-          </ArrowButton>
+      {/* <Spacer height={10} /> */}
+      {/* <MyCollections> */}
+      <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:verticalScale(5)}}>
 
-          <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" }}>
-            <View>
-              <AntDesign name="hearto" size={27} />
-            </View>
-          </TouchableOpacity>
 
-          <ArrowButton activeOpacity={0.8} onPress={() => scrollTo("right")}>
-            <Entypo name="chevron-small-right" size={27} />
-          </ArrowButton>
-        </BtnRow>
-      </MyCollections>
-      <Spacer height={10} />
+      <TouchableOpacity 
+      // style={{mar}}
+          onPress={() => scrollTo("left")}
+          >
+        <View style={{ display: "flex", alignSelf: "center"}}>
+          <Image source={icons.next1} style={{ height: 70, width: 80,marginLeft:-5 }} />
+        </View>
+      </TouchableOpacity>
+      
+
+
+        <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" }}>
+          <View>
+            <AntDesign name="hearto" size={27} />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          onPress={() => scrollTo("right")}
+          >
+        <View style={{ display: "flex", alignSelf: "center"}}>
+          <Image source={icons.next} style={{ height: 70, width: 80, }} />
+        </View>
+      </TouchableOpacity>
+      </View>
+
+
+      {/* </MyCollections> */}
+      <Spacer height={Platform.OS=="ios"?0: 5} />
       <MyCollectionGallery />
     </Container>
+    </ScrollView>
+
   );
 };
 
@@ -204,7 +212,6 @@ const Container = styled(View, {
   width: "100%",
   padding: 20,
   flex: 1,
-  backgroundColor: "#f3f3f3",
   // backgroundColor: "red",
 });
 
@@ -233,12 +240,6 @@ const ArrowButton = styled(TouchableOpacity, {
   justifyContent: "center",
   elevation: 10,
 });
-const BtnRow = styled(TouchableOpacity, {
-  paddingHorizontal: 10,
-  flexDirection: "row",
-  justifyContent: "space-between",
-  width: "100%",
-});
 
 const Container1 = styled(View, {
   display: "flex",
@@ -254,7 +255,7 @@ const MyCollections = styled(View, {
   flexDirection: "row",
   justifyContent: "space-between",
   // paddingHorizontal:10,
-  paddingTop: Platform.OS == "ios" ? verticalScale(10) : 10,
+  paddingTop: Platform.OS == "ios" ? verticalScale(15) : 10,
 });
 
 export default MyCollection;
