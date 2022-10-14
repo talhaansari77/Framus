@@ -39,21 +39,23 @@ const MyCollection = () => {
   const viewItemsChanged = useRef(({ viewableItems }) => {
     setCurrentIndex(viewableItems[0].index);
   }).current;
-  const dataImage = [gallery.galleryMainImage01, gallery.galleryMainImage02, gallery.galleryMainImage03,];
-
+  const dataImage = [
+    gallery.galleryMainImage01,
+    gallery.galleryMainImage02,
+    gallery.galleryMainImage03,
+  ];
 
   const scrollTo = (pointer) => {
     if (currentIndex < dataImage.length - 1 && pointer === "right") {
-      console.log('right', currentIndex)
-      sliderRef.current.scrollToIndex({ index: currentIndex + 1 })
+      console.log("right", currentIndex);
+      sliderRef.current.scrollToIndex({ index: currentIndex + 1 });
     } else if (currentIndex > 0 && pointer === "left") {
-      console.log('left', currentIndex)
-      sliderRef.current.scrollToIndex({ index: currentIndex - 1 })
-    }
-    else {
+      console.log("left", currentIndex);
+      sliderRef.current.scrollToIndex({ index: currentIndex - 1 });
+    } else {
       console.log("The End", currentIndex);
     }
-  }
+  };
   return (
     <Container>
       {/* <SafeAreaView> */}
@@ -94,7 +96,10 @@ const MyCollection = () => {
             color={colors.black}
           />
         </View>
-        <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" ,marginRight:10}}>
+        <TouchableOpacity
+          activeOpacity={0.6}
+          style={{ alignSelf: "center", marginRight: 10 }}
+        >
           <View>
             <Image
               source={icons.settingIcon}
@@ -107,15 +112,24 @@ const MyCollection = () => {
         </TouchableOpacity>
       </MyCollections>
       {/* </SafeAreaView> */}
-      <View style={{ height: 230, width: "100%", justifyContent: "center", alignItems: "center" }}>
-
+      <View
+        style={{
+          height: 230,
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <FlatList
           data={dataImage}
           keyExtractor={(item) => String(item)}
           scrollEventThrottle={32}
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
-            useNativeDriver: false
-          })}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            {
+              useNativeDriver: false,
+            }
+          )}
           onViewableItemsChanged={viewItemsChanged}
           viewabilityConfig={viewConfig}
           ref={sliderRef}
@@ -125,7 +139,6 @@ const MyCollection = () => {
           // scrollEventThrottle={16}
           bounces={false}
           pagingEnabled
-
           renderItem={({ item }) => (
             // <></>
             <View
@@ -138,8 +151,8 @@ const MyCollection = () => {
                 borderRadius: moderateScale(12),
                 // backgroundColor: item,
                 height: 230,
-                // width:"100%", 
-                width:  Platform.OS=="ios"? moderateScale(320): 330,
+                // width:"100%",
+                width: Platform.OS == "ios" ? moderateScale(320) : 330,
                 marginHorizontal: 5,
                 borderRadius: 12,
               }}
@@ -159,38 +172,26 @@ const MyCollection = () => {
                 blurRadius={6}
               />
             </View>
-
           )}
         />
       </View>
       <Spacer height={10} />
       <MyCollections>
-        <TouchableOpacity
-        style={{paddingLeft:10}}
-          activeOpacity={0.6}
-          onPress={(() => scrollTo("left"))}
-        >
-          <ArrowButton>
+        <BtnRow>
+          <ArrowButton activeOpacity={0.8} onPress={() => scrollTo("left")}>
             <Entypo name="chevron-small-left" size={27} />
           </ArrowButton>
-        </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" }}>
-          <View>
-            <AntDesign name="hearto" size={27} />
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.6} style={{ alignSelf: "center" }}>
+            <View>
+              <AntDesign name="hearto" size={27} />
+            </View>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-                style={{paddingRight:10}}
-
-         activeOpacity={0.6}
-          onPress={(() => scrollTo("right"))}
-        >
-          <ArrowButton>
+          <ArrowButton activeOpacity={0.8} onPress={() => scrollTo("right")}>
             <Entypo name="chevron-small-right" size={27} />
           </ArrowButton>
-        </TouchableOpacity>
+        </BtnRow>
       </MyCollections>
       <Spacer height={10} />
       <MyCollectionGallery />
@@ -218,7 +219,7 @@ const IconNumber = styled(View, {
   paddingTop: 1,
 });
 
-const ArrowButton = styled(View, {
+const ArrowButton = styled(TouchableOpacity, {
   borderRadius: 10,
   padding: 13,
   alignItems: "center",
@@ -230,7 +231,13 @@ const ArrowButton = styled(View, {
   alignItems: "center",
   alignSelf: "center",
   justifyContent: "center",
-  elevation:10
+  elevation: 10,
+});
+const BtnRow = styled(TouchableOpacity, {
+  paddingHorizontal: 10,
+  flexDirection: "row",
+  justifyContent: "space-between",
+  width: "100%",
 });
 
 const Container1 = styled(View, {
@@ -247,7 +254,7 @@ const MyCollections = styled(View, {
   flexDirection: "row",
   justifyContent: "space-between",
   // paddingHorizontal:10,
-  paddingTop: Platform.OS=="ios"? verticalScale(10):10
+  paddingTop: Platform.OS == "ios" ? verticalScale(10) : 10,
 });
 
 export default MyCollection;
