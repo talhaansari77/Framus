@@ -11,6 +11,7 @@ import Notifications from "../../Screens/Main/Notifications/Notifications";
 import SettingScreen from "../../Screens/Main/Settings/SettingScreen";
 import DisplayTimer from "../../Screens/Main/Settings/DisplayTimer/DisplayTimer";
 import MyAccount from "../../Screens/Main/Settings/MyAccount/MyAccount";
+import ArtSetting from "../../Screens/Main/Settings/ArtSetting/ArtSetting";
 
 const MainStack = () => {
   const Stack = createStackNavigator();
@@ -21,6 +22,7 @@ const MainStack = () => {
         tabBarShowLabel: false,
       })}
     >
+      <Stack.Screen name="ArtSetting" component={ArtSetting} />
       <Stack.Screen name="WelcomeCollection" component={WelcomeCollection} />
       <Stack.Screen name="MyCollection" component={MyCollection} />
       <Stack.Screen name="SelectScreen" component={SelectScreen} />

@@ -33,7 +33,7 @@ const SettingBody = () => {
       icon: icons.art,
       name: "Art Settings",
       rightArrow: icons.rightArrow,
-      onPress: () => navigation.navigate("Settings"),
+      onPress: () => navigation.navigate("ArtSetting"),
     },
     {
       id: 4,

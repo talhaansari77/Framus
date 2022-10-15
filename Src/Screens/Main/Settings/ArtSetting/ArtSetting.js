@@ -3,10 +3,14 @@ import React from 'react'
 import ArtSettingHeader from './molecules/ArtSettingHeader'
 import ArtSettingBody from './molecules/ArtSettingBody'
 
-const ArtSetting = () => {
+const ArtSetting = ({navigation}) => {
   return (
     <View>
-        <ArtSettingHeader />
+        <ArtSettingHeader
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
         <ArtSettingBody />
     </View>
   )

@@ -6,16 +6,14 @@ import { verticalScale } from "react-native-size-matters";
 import styled from "react-native-styled-components";
 import { Spacer } from "../../../../../Components/Spacer";
 
-const ArtSettingHeader = ({navigation}) => {
+const ArtSettingHeader = ({navigation, onPress}) => {
   return (
-
+<SafeAreaView>
     <Row>
       <TouchableOpacity
         activeOpacity={0.6}
         style={{ paddingLeft: 15, flex:1 }}
-        onPress={() => {
-          navigation.goBack();
-        }}
+        onPress={onPress}
       >
         <Feather name="chevron-left" size={verticalScale(25)} />
       </TouchableOpacity>
@@ -24,6 +22,7 @@ const ArtSettingHeader = ({navigation}) => {
       </View>
       <View></View>
     </Row>
+    </SafeAreaView>
 
   );
 };

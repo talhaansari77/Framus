@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { verticalScale } from "react-native-size-matters";
 import CustomText from "../../../../../Components/CustomText";
@@ -6,63 +6,95 @@ import { Spacer } from "../../../../../Components/Spacer";
 import styled from "react-native-styled-components";
 import { colors } from "../../../../../Utils/Colors";
 import CustomButton from "../../../../../Components/CustomButton";
-import Draggable from 'react-native-draggable';
+import RnRangeSlider from "rn-range-slider";
+import { Slider } from "react-native-elements";
+// import Slider from "@react-native-community/slider";
 
 const ArtSettingBody = () => {
   return (
     <View>
-      <Spacer height={verticalScale(20)} />
+      <Spacer height={verticalScale(120)} />
       <Container>
-        <CustomText
-          label="Choose the % of time public art 
-              vs your collection displayed"
-          fontFamily={"regular"}
-          fontSize={"16"}
-          alignSelf="center"
-          align="center"
-          textAlign="center"
+        <View style={{ width: "100%", paddingHorizontal: 50 }}>
+          <CustomText
+            label="What art would you like
+          to see more often?"
+            color={colors.pureBlack}
+            fontFamily={"regular"}
+            fontSize={"14"}
+            alignSelf="center"
+            align="center"
+            textAlign="center"
+          />
+        </View>
+        <Spacer height={verticalScale(40)} />
+
+        {/* <Slider
+          maximumValue={50}
+          minimumValue={20}
+          step={1}
+          trackStyle={{
+            borderRadius: 20,
+            height: 32,
+            backgroundColor: colors.white1,
+          }}
+          thumbStyle={{
+            borderWidth: 12,
+            borderColor: colors.pureBlack,
+            height: 40,
+            width: 40,
+            backgroundColor: colors.white,
+          }}
+        /> */}
+        <View style={{width:"100%", paddingHorizontal:19}}>
+        <Slider
+          maximumValue={50}
+          minimumValue={20}
+          // maximumTrackTintColor={colors.white1}
+          minimumTrackTintColor={colors.darkBlack}
+          step={1}
+          trackStyle={{
+            borderRadius: 20,
+            height: 35,
+            backgroundColor: colors.white1,
+          }}
+          thumbStyle={{
+            borderWidth: 12,
+            borderColor: colors.gray6,
+            height: 40,
+            width: 40,
+            backgroundColor: colors.white,
+          }}
         />
-        <Spacer height={verticalScale(22)} />
-        <CustomText
-          label="Show Public Art (50%)"
-          fontFamily={"bold"}
-          fontSize={"21"}
-          alignSelf="center"
-          align="center"
-          textAlign="center"
-        />
-        <Spacer height={verticalScale(22)} />
-        <LineContainer>
-          <View style={{flex:1, width:1, height:1}}>
-            <Draggable
-              x={-26}
-              y={118}
-              renderSize={50}
-              renderColor="black"
-              renderText=""
-              minX={-26}
-              minY={1}
-              maxX={20}
-              maxY={306}
+        </View>
+
+        <Spacer height={verticalScale(10)} />
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: "100%",
+            paddingHorizontal: 18,
+          }}
+        >
+          <View>
+            <CustomText fontSize={11} label={"public Art"} fontFamily={"bold"} />
+            <CustomText fontSize={11}  label={"50%"} fontFamily={"bold"} />
+          </View>
+
+          <View>
+            <CustomText fontSize={11}  label={"My Collection"} fontFamily={"bold"} />
+            <CustomText 
+            fontSize={11} 
+              alignSelf={"flex-end"}
+              label={"50%"}
+              fontFamily={"bold"}
             />
-            </View>
-          <CenteredLine />
-          <TopLine />
-          <StraightLine />
-          <BottomLine />
-        </LineContainer>
+          </View>
+        </View>
 
-        <Spacer height={verticalScale(22)} />
-        <CustomText
-          label="Show My Collection (50%)"
-          fontFamily={"bold"}
-          fontSize={"19"}
-          alignSelf="center"
-          align="center"
-          textAlign="center"
-        />
-
-        <Spacer height={verticalScale(28)} />
+        <Spacer height={verticalScale(130)} />
 
         <CustomButton
           title="Save"
@@ -76,9 +108,21 @@ const ArtSettingBody = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  slider: {
+    width: "100%",
+    opacity: 1,
+    height: 100,
+    marginTop: 10,
+    paddingVertical: 40,
+    backgroundColor: "blue",
+  },
+});
+
 const Container = styled(View, {
   width: "100%",
-  paddingHorizontal: 30,
+  paddingHorizontal: 20,
+  // backgroundColor:
 });
 
 const BlackBox = styled(View, {
