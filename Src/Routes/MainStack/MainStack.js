@@ -9,7 +9,8 @@ import UploadImages from "../../Screens/Main/UploadImages";
 import PlayMusic from "../../Screens/Main/PlayMusic/PlayMusic";
 import Notifications from "../../Screens/Main/Notifications/Notifications";
 import SettingScreen from "../../Screens/Main/Settings/SettingScreen";
-import DisplayTimer from "../../Screens/Main/DisplayTimer/DisplayTimer";
+import DisplayTimer from "../../Screens/Main/Settings/DisplayTimer/DisplayTimer";
+import MyAccount from "../../Screens/Main/Settings/MyAccount/MyAccount";
 
 const MainStack = () => {
   const Stack = createStackNavigator();
@@ -28,6 +29,8 @@ const MainStack = () => {
       <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="SettingScreen" component={SettingScreen} />
       <Stack.Screen name="DisplayTimer" component={DisplayTimer} />
+      <Stack.Screen name="MyAccount" component={MyAccount} />
+
 
 
 

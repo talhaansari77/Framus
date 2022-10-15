@@ -17,9 +17,12 @@ import icons from "../../../../Assets/Icons";
 import CustomText from "../../../Components/CustomText";
 import MenueModal from "./molecules/MenueModal";
 import { Entypo } from "@expo/vector-icons";
+import Lottie from 'lottie-react-native';
+
 
 const PlayMusic = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [add, setAdd] = useState(false)
 
   return (
     <View style={styles.mainContainer}>
@@ -105,8 +108,33 @@ const PlayMusic = ({ navigation }) => {
                 style={commonStyles.img}
               />
             </View>
-            <TouchableOpacity activeOpacity={0.6} style={styles.plusBtn}>
-              <Entypo name="plus" size={moderateScale(20)} color="black" />
+            <TouchableOpacity activeOpacity={0.6} style={styles.plusBtn}
+            onPress={()=>{
+              setAdd(!add)
+
+            }}
+            >
+              {
+                add?(
+                  <View>
+                     <Lottie
+                  style={{ height: 30, width: 30 }}
+                  source={require("../../../../Assets/Loader/checkLoader.json")}
+                  autoPlay={add}
+                  
+                  // loop={add}
+                  speed={1.5}
+                />
+
+                  </View>
+                ):
+                <View>
+                                <Entypo name="plus" size={moderateScale(20)} color="black" />
+
+
+                </View>
+              }
+           
             </TouchableOpacity>
           </View>
 

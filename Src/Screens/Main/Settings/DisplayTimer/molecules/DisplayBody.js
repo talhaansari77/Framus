@@ -1,10 +1,11 @@
 import { View, Text } from "react-native";
 import React from "react";
-import CustomText from "../../../../Components/CustomText";
-import { colors } from "../../../../Utils/Colors";
-import { Spacer } from "../../../../Components/Spacer";
+import CustomText from "../../../../../Components/CustomText";
+import { colors } from "../../../../../Utils/Colors";
+
+import { Spacer } from "../../../../../Components/Spacer";
 import { moderateScale, verticalScale } from "react-native-size-matters";
-import CustomButton from "../../../../Components/CustomButton";
+import CustomButton from "../../../../../Components/CustomButton";
 import styled from "react-native-styled-components";
 
 const DisplayBody = () => {

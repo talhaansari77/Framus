@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import React from "react";
 import Feather from "react-native-vector-icons/Feather";
-import CustomText from "../../../../Components/CustomText";
+import CustomText from "../../../../../Components/CustomText";
 import { verticalScale } from "react-native-size-matters";
 import styled from "react-native-styled-components";
-import { Spacer } from "../../../../Components/Spacer";
+import { Spacer } from "../../../../../Components/Spacer";
 
 const ArtSettingHeader = ({navigation}) => {
   return (

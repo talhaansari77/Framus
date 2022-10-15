@@ -1,11 +1,11 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { verticalScale } from "react-native-size-matters";
-import CustomText from "../../../../Components/CustomText";
-import { Spacer } from "../../../../Components/Spacer";
+import CustomText from "../../../../../Components/CustomText";
+import { Spacer } from "../../../../../Components/Spacer";
 import styled from "react-native-styled-components";
-import { colors } from "../../../../Utils/Colors";
-import CustomButton from "../../../../Components/CustomButton";
+import { colors } from "../../../../../Utils/Colors";
+import CustomButton from "../../../../../Components/CustomButton";
 import Draggable from 'react-native-draggable';
 
 const ArtSettingBody = () => {

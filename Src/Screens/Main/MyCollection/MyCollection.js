@@ -18,6 +18,7 @@ import gallery from "../../../../Assets/Gallery";
 import CustomText from "../../../Components/CustomText";
 import { colors } from "../../../Utils/Colors";
 import Header from "./molecules/Header";
+import * as Animatable from "react-native-animatable";
 
 import { verticalScale, moderateScale } from "react-native-size-matters";
 
@@ -29,10 +30,11 @@ import FooterBtn from "./molecules/FooterBtn";
 import CarouselContainer from "./molecules/CarouselContainer";
 import PlayMusicContainer from "./molecules/PlayMusicContainer";
 import PlayContainer from "./molecules/PlayContainer";
-export const SLIDER_WIDTH = Dimensions.get("window").width + 30;
-export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 1);
+export const SLIDER_WIDTH = Dimensions.get("window").width/1;
+export const ITEM_WIDTH = SLIDER_WIDTH / 2;
 const MyCollection = ({ navigation }) => {
   const [addCollection, setAddCollection] = useState(false);
+  const [changeText, setChangeText] = useState("");
 
   const isCarousel = useRef(null);
 
@@ -41,7 +43,6 @@ const MyCollection = ({ navigation }) => {
     gallery.galleryMainImage02,
     gallery.galleryMainImage03,
   ];
-
   const CarouselRender = ({ item }) => {
     return (
       <View>
@@ -62,26 +63,37 @@ const MyCollection = ({ navigation }) => {
         paddingTop: Platform.OS == "ios" ? verticalScale(40) : 0,
       }}
     >
-      <Header 
-      onSetting={()=>{
-        navigation.navigate("SettingScreen")
+      <Header
+            addCollection={addCollection}
 
-        
-      }}
-      onNotification={()=>{
-        navigation.navigate("Notifications")
-        
+        changeText={changeText}
+        onSetting={() => {
+          navigation.navigate("SettingScreen");
+        }}
+        onNotification={() => {
+          navigation.navigate("Notifications");
+        }}
+      />
+      <ScrollView
+        style={{ height: "100%" }}
+        onScroll={(e) => {
+          if (e.nativeEvent.contentOffset.y > 100) {
+            setChangeText("Your Collection");
+          } else {
+            setChangeText("On Display");
+          }
 
-      }}
-       />
-      <ScrollView style={{ height: "100%" }}>
-        <View style={styles.headerContainer}>
+          console.log("ScrolView", e.nativeEvent.contentOffset.y);
+        }}
+      >
+        <View style={styles.headerContainer} >
           <Carousel
             ref={isCarousel}
             layout={"default"}
             data={dataImage}
+           
             sliderWidth={SLIDER_WIDTH}
-            itemWidth={ITEM_WIDTH}
+            itemWidth={SLIDER_WIDTH/1.15}
             renderItem={CarouselRender}
           />
           <PlayContainer
@@ -90,27 +102,21 @@ const MyCollection = ({ navigation }) => {
           />
         </View>
 
-        <View
-          style={{
-            display: "flex",
-            alignSelf: "center",
-            width: 200,
-            height: 30,
-            marginTop: verticalScale(10),
-          }}
-        >
-          <Image
-            resizeMode="contain"
-            source={icons.collectionText}
-            style={commonStyles.img}
-          />
-        </View>
+        <CustomText
+          label={changeText == "Your Collection" ? "" : "Your Collection"}
+          fontFamily={"bold"}
+          fontSize={17}
+          marginTop={10}
+          alignSelf={"center"}
+          color={colors.black}
+        />
+
         <View style={{ marginHorizontal: 10 }}>
           <MyCollectionGallery />
         </View>
       </ScrollView>
       {addCollection ? (
-        <View style={styles.addCollection}>
+        <Animatable.View animation="slideInDown" style={styles.addCollection}>
           <AntDesign name="heart" size={24} color={colors.red} />
           <CustomText
             label="Artwork has been added to your collection."
@@ -118,11 +124,11 @@ const MyCollection = ({ navigation }) => {
             color={colors.white}
             fontSize={verticalScale(8)}
           />
-        </View>
+        </Animatable.View>
       ) : (
         <></>
       )}
-      <PlayMusicContainer />
+      {changeText == "Your Collection" ? <PlayMusicContainer changeText={changeText}/> : <></>}
 
       <FooterBtn
         onPress={() => {
@@ -137,11 +143,12 @@ export default MyCollection;
 const styles = StyleSheet.create({
   headerContainer: {
     width: "100%",
-    height: verticalScale(280),
+    height: verticalScale(285),
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     backgroundColor: colors.white,
-    paddingLeft: 20,
+    paddingTop: verticalScale(10),
+    // paddingLeft: 20,
   },
   addCollection: {
     position: "absolute",
@@ -149,8 +156,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.collectionBlack,
     marginTop: verticalScale(40),
     height: verticalScale(50),
-    width: "95%",
-    marginLeft: 15,
+    width: "96%",
+    alignSelf: "center",
+    // marginLeft: verticalScale(7),
     borderRadius: moderateScale(15),
     padding: 20,
     alignItems: "center",

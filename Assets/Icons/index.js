@@ -31,6 +31,12 @@ const icons = {
     headset:require('./headset.png'),
     account:require('./account.png'),
     rightArrow:require('./rightArrow.png'),
+    upload:require('./uploadImage.png'),
+    SelectImage:require('./SelectImage.png'),
+    uploadContainer:require('./uploadContainer.png'),
+
+
+
 
 
 

@@ -20,7 +20,7 @@ const SettingHeader = ({ navigation,onPress }) => {
           size={verticalScale(22)}
         />
       </TouchableOpacity>
-      <View style={{  flex:1.9 }}>
+      <View style={{  flex:1.6 }}>
         <CustomText label={"Settings"} fontSize={18}
         color={colors.black}
          fontFamily={"bold"} />
@@ -33,7 +33,8 @@ const SettingHeader = ({ navigation,onPress }) => {
 const Row = styled(View, {
   flexDirection: "row",
   justifyContent: "space-between",
-  marginBottom: 20,
+  marginBottom: 10,
+  paddingTop:verticalScale(10)
 });
 
 export default SettingHeader;

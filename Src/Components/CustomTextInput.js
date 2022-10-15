@@ -52,7 +52,7 @@ const CustomTextInput = ({
         style={[
           {
             width: props.width || "100%",
-            height: props.height || verticalScale(50),
+            height: props.height || verticalScale(40),
             borderRadius: props.borderRadius || moderateScale(15),
             backgroundColor: props.backgroundColor,
             marginTop: props.marginTop || verticalScale(0),
@@ -192,7 +192,7 @@ const CustomTextInput = ({
         ) : null}
 
         {props.calendarClock ? (
-          <View style={{ display: "flex", flexDirection: "row" }}>
+          <View style={{ display: "flex", flexDirection:   "row" }}>
             <View
               style={{
                 marginLeft: 10,

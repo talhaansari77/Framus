@@ -136,10 +136,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         overflow: "hidden",
         borderRadius: moderateScale(12),
-        backgroundColor: colors.red,
         // width:100,
-        width: Platform.OS == "ios" ? "85%" : moderateScale(330),
-        marginHorizontal: 5,
+        width: Platform.OS == "ios" ? "100%" : moderateScale(330),
+        // marginHorizontal: 5,
         borderRadius: 12,
     },
     absoluteContainer:{

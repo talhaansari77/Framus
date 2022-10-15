@@ -23,7 +23,10 @@ const SettingBody = () => {
       icon: icons.account,
       name: "My Account",
       rightArrow: icons.rightArrow,
-      onPress: () => navigation.navigate("Settings"),
+      onPress: () => navigation.navigate("MyAccount"),
+
+     
+        
     },
     {
       id: 3,
@@ -49,7 +52,7 @@ const SettingBody = () => {
   ];
   return (
     <View>
-        <Spacer height={verticalScale(20)}/>
+      <Spacer height={verticalScale(10)} />
       {settingArray.map((item, index) => (
         <TouchableOpacity 
         activeOpacity={0.6}
@@ -60,12 +63,12 @@ const SettingBody = () => {
                 <Image
                   source={item.icon}
                   resizeMode="contain"
-                  style={{ width: 23, height: 23, alignSelf: "center" }}
+                  style={{ width: 25, height: 25, alignSelf: "center" }}
                 />
               </View>
               <View style={{ flex: 9.5, alignSelf: "center" }}>
                 <CustomText
-                  fontSize={11}
+                  fontSize={13}
                   color={colors.darkBlack}
                   fontFamily={"light"}
                   label={item.name}
@@ -96,12 +99,12 @@ const InnerMapBody = styled(View, {
 
 const MapBody = styled(View, {
   width: "100%",
-  height: 60,
+  height: verticalScale(48),
   flexDirection: "row",
   justifyContent: "space-between",
   backgroundColor: colors.white,
   marginBottom: 10,
-  borderRadius: 10,
+  borderRadius: 15,
 });
 
 export default SettingBody;

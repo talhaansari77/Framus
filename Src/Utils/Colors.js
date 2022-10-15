@@ -18,6 +18,7 @@ export const colors = {
   gray2: "#A2A6B0",
   gray3:"#686868",
   gray4: "#838383",
+  gray5: "#9A9A9A",
   lightGray:"#929292",
   white: "#FFFFFF",
   red: "red",
@@ -27,7 +28,7 @@ export const colors = {
   blue: "blue",
   switchGray: "#E2E2E2",
   halfGray: "#9F9F9F",
-  collectionBlack:"#34343A"
+  collectionBlack:"#34343A",
   // halfGray:"  #EBEBF5"
   // lightBlack:"#707070",
 

@@ -147,6 +147,7 @@ const Signup = ({ navigation }) => {
         {/* <Spacer height={10} /> */}
 
         <CustomText placeholder="hellloo" height={60} />
+        <CustomText/>
         <CustomTextInput
           placeholder="Username"
           height={60}
@@ -161,11 +162,7 @@ const Signup = ({ navigation }) => {
               setSubmitError({ ...submitError, userNameError: "" });
           }}
           error={submitError.userNameError}
-          // onChangeText={(txt) => {
-          //   let data =SearchLists.filter((item) => item.name.includes(txt)?item:'');
-          //   setFilerList(data);
-          //   console.log(data);
-          // }}
+
         />
         <CustomTextInput
           placeholder="First Name"
@@ -220,17 +217,16 @@ const Signup = ({ navigation }) => {
             offsetX={17}
             sw={2}
             onPress={() => {
+              // console.log("navig")
               // onHandleSubmit();
               const response = EditValidate(
                 data,
                 submitError,
                 setSubmitError,
-                nameList
+                // nameList
               );
               if (response)
-                navigation.navigate("MainStack", {
-                  screen: "WelcomeCollection",
-                });
+                navigation.navigate("MainStack",);
             }}
           />
         </View>

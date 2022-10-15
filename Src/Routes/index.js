@@ -16,7 +16,7 @@ const RootNavigator = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: "#E7E8EB",
+      background: "#ECEEF3",
     },
   };
   const Stack = createStackNavigator();

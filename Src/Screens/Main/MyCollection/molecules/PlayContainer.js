@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            height: verticalScale(50),
+            height: verticalScale(40),
+            // paddingTop:verticalScale(5)
+            
           
     }
 
