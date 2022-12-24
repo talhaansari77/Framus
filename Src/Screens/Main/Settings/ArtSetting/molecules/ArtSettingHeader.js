@@ -9,6 +9,7 @@ import { Spacer } from "../../../../../Components/Spacer";
 const ArtSettingHeader = ({navigation, onPress}) => {
   return (
 <SafeAreaView>
+<Spacer height={Platform.OS == "ios" ? 0 : 30} />
     <Row>
       <TouchableOpacity
         activeOpacity={0.6}

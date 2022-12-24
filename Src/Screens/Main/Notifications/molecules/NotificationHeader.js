@@ -5,10 +5,12 @@ import CustomText from "../../../../Components/CustomText";
 import { verticalScale } from "react-native-size-matters";
 import styled from "react-native-styled-components";
 import { Spacer } from "../../../../Components/Spacer";
+import { colors } from "../../../../Utils/Colors";
 
 const NotificationHeader = ({onBack}) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor:colors.white}} >
+       <Spacer height={Platform.OS == "ios" ? 0 : 30} />
     <Row>
       <TouchableOpacity
         activeOpacity={0.6}

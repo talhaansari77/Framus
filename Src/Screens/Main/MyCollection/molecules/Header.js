@@ -11,9 +11,12 @@ import { colors } from "../../../../Utils/Colors";
 import CustomText from "../../../../Components/CustomText";
 import icons from "../../../../../Assets/Icons";
 import { moderateScale, verticalScale } from "react-native-size-matters";
+import { Spacer } from "../../../../Components/Spacer";
 
 const Header = ({ onNotification, onSetting, changeText, addCollection }) => {
   return (
+    <View style={{backgroundColor:colors.white}} > 
+    <Spacer height={Platform.OS == "ios" ? 0 : 20} />
     <View
       style={[
         styles.header,
@@ -64,6 +67,7 @@ const Header = ({ onNotification, onSetting, changeText, addCollection }) => {
           />
         </View>
       </TouchableOpacity>
+    </View>
     </View>
   );
 };

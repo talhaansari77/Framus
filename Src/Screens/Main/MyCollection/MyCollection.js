@@ -61,6 +61,7 @@ const MyCollection = ({ navigation }) => {
         flex: 1,
         display: "flex",
         paddingTop: Platform.OS == "ios" ? verticalScale(40) : 0,
+        backgroundColor:colors.white
       }}
     >
       <Header

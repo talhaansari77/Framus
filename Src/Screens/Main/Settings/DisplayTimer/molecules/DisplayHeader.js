@@ -4,10 +4,12 @@ import CustomText from "../../../../../Components/CustomText";
 import styled from "react-native-styled-components";
 import Feather from "react-native-vector-icons/Feather";
 import { verticalScale } from "react-native-size-matters";
+import { Spacer } from "../../../../../Components/Spacer";
 
 const DisplayHeader = ({onPress}) => {
   return (
     <Container>
+       <Spacer height={Platform.OS == "ios" ? 0 : 20} />
       <Row>
         <TouchableOpacity
           activeOpacity={0.6}
